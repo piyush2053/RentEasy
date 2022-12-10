@@ -1,0 +1,37 @@
+<div class="container py-5 h-100">
+  
+    <div class="row d-flex align-items-center justify-content-center h-100">
+        <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{errMsg}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <h2>Register your property</h2>
+            <form [formGroup]="propForm" (ngSubmit)="propSubmit()"> 
+                <div class="form-outline mb-4">
+                    <input class="form-control form-control-lg" formControlName="title" />
+                    <label class="form-label" >Property Title</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input class="form-control form-control-lg" formControlName="info" placeholder="Only 200 words"/>
+                    <label class="form-label">Description and Contact Information</label>
+                </div>    
+                <div class="form-outline mb-4">
+                    <input  class="form-control form-control-lg" formControlName="address" />
+                    <label class="form-label" >Address</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input  class="form-control form-control-lg" formControlName="city" />
+                    <label class="form-label" >City</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input  class="form-control form-control-lg" formControlName="img" />
+                    <label class="form-label" >Image</label>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
