@@ -1,30 +1,34 @@
-<div class="container py-5 h-100">
-  <div class="row d-flex align-items-center justify-content-center h-100">
-    <div *ngIf="errorLogin" class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>{{errorLogin}}</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <div class="col-md-8 col-lg-7 col-xl-6">
-      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid"
-        alt="Phone image">
-    </div>
-    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-      <h2 style="color: black;">Login</h2>
-      <b></b>
-      <form [formGroup]="loginForm">
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-          <input type="email" formControlName="email" class="form-control form-control-lg" />
-          <label class="form-label" style="color: black;">Email address</label>
+<div class="section" style="background-color: #1f2029;">
+  <div class="container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="row full-height justify-content-center">
+      <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+          <div class="card-3d-wrap mx-auto">
+            <div class="card-3d-wrapper">
+              <div class="card-front">
+                <div class="center-wrap">
+                  <form class="section text-center" [formGroup]="loginForm">
+                    
+                    <h4 class="mb-4 pb-3" style="color: antiquewhite;padding-top: 10px;">Log In</h4>
+                    <div class="form-group">
+                      <input type="email" formControlName="email" class="form-style" placeholder="Your Email"
+                        autocomplete="off">
+                    </div>
+                    <div class="form-group mt-2">
+                      <input type="password" formControlName="password" class="form-style" placeholder="Your Password"
+                        autocomplete="off">
+                      <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <button class="btn mt-4" (click)="login()">Sign in</button>
+                    <p class="mb-0 mt-4 text-center"><a routerLink="/signup" class="link">New
+                        User? Register Here</a></p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-outline mb-4">
-          <input type="password" formControlName="password" class="form-control form-control-lg" />
-          <label class="form-label" style="color: black;">Password</label>
-        </div>
-        <button class="btn btn-primary btn-lg btn-block" (click)="login()">Sign in</button>
-        <a routerLink="/signup" style="margin-left: 10px;text-decoration: none; color: black;" clci>New User? Sign Up Here</a>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>

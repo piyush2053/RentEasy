@@ -1,17 +1,17 @@
 
-<div style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;">
-  <h2 style="margin-left: 5px; margin-right: 10px;">Manage Properties</h2>
+<div style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;background-color: #1f2029;">
+  <h2 style="margin-left: 5px; margin-right: 10px;color: antiquewhite;">Manage Properties</h2>
   <button type="button" class="btn btn-primary" [disabled]="!validate" (click)="navigateToAddProperty()"
-    style="font-size: 15px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;border-color: rgb(225, 223, 223);color: rgb(255, 255, 255);height: fit-content;width: fit-content; margin-top: 5px;">Add
+    style="font-size: 15px;background-color:#26272a; border-radius: 20px; font-weight: 500;border-color: rgb(225, 223, 223);color: rgb(255, 255, 255);height: fit-content;width: fit-content; margin-top: 5px;">Add
     Property</button>
   <button type="button" class="btn btn-primary" (click)="logout()"
-    style="font-size: 15px;background-color:#FF9100; font-weight: 500; border-radius: 20px;border-color: rgb(225, 223, 223);color: rgb(255, 255, 255);height: fit-content;width: fit-content; margin-top: 5px; margin-left: 10px;">Logout</button>
+    style="font-size: 15px;background-color:#26272a; font-weight: 500; border-radius: 20px;border-color: rgb(225, 223, 223);color: rgb(255, 255, 255);height: fit-content;width: fit-content; margin-top: 5px; margin-left: 10px;">Logout</button>
 
 </div>
-<div class="alert alert-primary" role="alert" [hidden]="!messageVisible">
+<div role="alert" [hidden]="!messageVisible" style="padding:20px;height: min-content; background-color: #291f1f; color:rgb(230, 21, 21) ">
   Only Admin can Delete/Add User
 </div>
-<table class="table">
+<table class="table" style="background-color: #1f2029; height: 100vh;color: white;">
   <thead class="thead-dark">
     <tr>
       <th scope="col" style="width: 10px;">Image</th>
