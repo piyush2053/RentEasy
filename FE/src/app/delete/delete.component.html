@@ -1,38 +1,37 @@
+<div style="background-color: #1f2029;">
+  <div style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;background-color: #1f2029;">
+    <h2 style="margin-left: 5px; margin-right: 10px;color: antiquewhite;">Manage Properties</h2>
+    <button type="button" class="btn1" [disabled]="!validate" (click)="navigateToAddProperty()">Add
+      Property</button>
+    <button type="button" class="btn1" (click)="logout()">Logout</button>
 
-<div style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;background-color: #1f2029;">
-  <h2 style="margin-left: 5px; margin-right: 10px;color: antiquewhite;">Manage Properties</h2>
-  <button type="button" class="btn btn-primary" [disabled]="!validate" (click)="navigateToAddProperty()"
-    style="font-size: 15px;background-color:#26272a; border-radius: 20px; font-weight: 500;border-color: rgb(225, 223, 223);color: rgb(255, 255, 255);height: fit-content;width: fit-content; margin-top: 5px;">Add
-    Property</button>
-  <button type="button" class="btn btn-primary" (click)="logout()"
-    style="font-size: 15px;background-color:#26272a; font-weight: 500; border-radius: 20px;border-color: rgb(225, 223, 223);color: rgb(255, 255, 255);height: fit-content;width: fit-content; margin-top: 5px; margin-left: 10px;">Logout</button>
+  </div>
+  <div role="alert" [hidden]="!messageVisible"
+    style="padding:20px;height: min-content; background-color: #291f1f; color:rgb(230, 21, 21) ">
+    Only Admin can Delete/Add User
+  </div>
+  <table class="table" style="background-color: #1f2029;color: white;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" style="width: 10px;">Image</th>
+        <th scope="col">Property Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">Action</th>
 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usr of readProps">
+        <td><img src={{usr.img}} alt="No Image" style="border-radius: 50px;" width="70" height="70"></td>
+        <td>{{usr.title}}</td>
+        <td>{{usr.info}}</td>
+        <td>{{usr.Address}}</td>
+        <td>{{usr.City}}</td>
+        <td><button class="btn btn-danger" [disabled]="!validate" (click)="deleteUser(usr.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<div role="alert" [hidden]="!messageVisible" style="padding:20px;height: min-content; background-color: #291f1f; color:rgb(230, 21, 21) ">
-  Only Admin can Delete/Add User
-</div>
-<table class="table" style="background-color: #1f2029; height: 100vh;color: white;">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col" style="width: 10px;">Image</th>
-      <th scope="col">Property Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Address</th>
-      <th scope="col">City</th>
-      <th scope="col">Action</th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let usr of readProps">
-      <td><img src={{usr.img}} alt="No Image" style="border-radius: 50px;" width="70" height="70"></td>
-      <td>{{usr.title}}</td>
-      <td>{{usr.info}}</td>
-      <td>{{usr.Address}}</td>
-      <td>{{usr.City}}</td>
-      <td><button class="btn btn-danger" [disabled]="!validate" (click)="deleteUser(usr.id)">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
-
 <router-outlet></router-outlet>

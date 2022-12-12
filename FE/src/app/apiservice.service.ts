@@ -14,6 +14,7 @@ export class ApiserviceService {
   getProperties="http://localhost:3000/properties"
   createProperty="http://localhost:3000/create-properties"
   deleteProperty="http://localhost:3000/delete"
+  mail1= "http://localhost:3000/sendmail"
   
 
   
@@ -26,6 +27,10 @@ export class ApiserviceService {
   //create data
   createData(data:any):Observable<any>{
     return this.http.post(`${this.createdata}`,data)
+  }
+  //mail
+  mailToUser(data:any):Observable<any>{
+    return this.http.post(`${this.mail1}`,data)
   }
 
   //deletedata

@@ -36,7 +36,7 @@
 </div>
  -->
 
- <div class="section" style="background-color: #1f2029; ">
+<div class="section" style="background-color: #1f2029; ">
     <div class="container">
         <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{errMsg}}</strong>
@@ -45,26 +45,25 @@
         <div class="row full-height justify-content-center">
             <div class="col-12 text-center align-self-center py-5">
                 <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                    <div class="card-3d-wrap mx-auto" >
+                    <div class="card-3d-wrap mx-auto">
                         <div class="card-3d-wrapper">
                             <div class="card-front">
-                                <div class="center-wrap" >
-                                    <form class="section text-center" [formGroup]="propForm" (ngSubmit)="propSubmit()">
+                                <div class="center-wrap">
+                                    <form class="section text-center" [formGroup]="propForm" (ngSubmit)="propSubmit()" >
                                         <h4 class="mb-4 pb-3" style="color: antiquewhite;">List Your Property</h4>
                                         <div class="form-group">
-                                            <input type="text" class="form-style"
-                                                placeholder="Your Property Title" formControlName="title" autocomplete="off">
+                                            <input type="text" class="form-style" placeholder="Your Property Title"
+                                                formControlName="title" autocomplete="off">
                                             <i class="input-icon uil uil-user"></i>
                                         </div>
                                         <div class="form-group mt-2">
-                                            <input type="text"  class="form-style"
-                                                placeholder="Description and Contact" formControlName="info" autocomplete="off">
+                                            <input type="text" class="form-style" placeholder="Description and Contact"
+                                                formControlName="info" autocomplete="off">
                                             <i class="input-icon uil uil-at"></i>
                                         </div>
                                         <div class="form-group mt-2">
-                                            <input type="text" class="form-style"
-                                                placeholder="Address" formControlName="address"
-                                                autocomplete="off">
+                                            <input type="text" class="form-style" placeholder="Address"
+                                                formControlName="address" autocomplete="off">
                                             <i class="input-icon uil uil-lock-alt"></i>
                                         </div>
                                         <div class="form-group mt-2">
@@ -74,17 +73,19 @@
                                         <div class="form-group mt-2">
                                             <input type="text" class="form-style" placeholder="Image URL"
                                                 formControlName="img" autocomplete="off">
+
                                         </div>
                                         <!-- <a href="#" class="btn mt-4">submit</a> -->
                                         <button type="submit" class="btn mt-4">Submit</button>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-<router-outlet></router-outlet>
 
-
+        
+        <router-outlet></router-outlet>
