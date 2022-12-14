@@ -14,6 +14,7 @@ export class HomepageComponent implements OnInit {
   email: any;
   imgUrl: any;
   readProps:any;
+
   validate = true;
   messageVisible = false;
 
@@ -23,7 +24,6 @@ export class HomepageComponent implements OnInit {
     // this.name2 = this.email.split("@");
     // this.name = this.name2[0]
   }
-  readUser: any
   ngOnInit(): void {
     this.api.getNameByEmail(this.email).subscribe((res) => {
       this.name = res.data;

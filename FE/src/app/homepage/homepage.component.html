@@ -1,7 +1,7 @@
 <div
-    style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between;background-color: #1f2029;">
+    style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between;background-color: #F5F5F5;">
     <div style="display: flex; border-radius: 30px;">
-        <h2 style="margin-left: 5px; margin-right: 10px;padding-top: 10px; color: antiquewhite;">Properties Near You
+        <h2 style="margin-left: 5px; margin-right: 10px;padding-top: 10px; color: #616161;">Properties Near You
         </h2>
         <button type="button" class="btn btn-primary" [hidden]="!validate" (click)="navigateToManage()"
             style="margin-top: 13px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;">Manage
@@ -12,34 +12,33 @@
             Admin
         </p>
     </div>
-    <div style="display: flex; background-color: rgb(69, 68, 68); border-radius: 30px; margin-right: 10px;">
+    <div
+        style="display: flex; background-color: #EFEBE9; border-radius: 30px; margin-right: 10px;box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);">
         <img src="{{imgUrl}}" style="border-radius: 60px; border-color: antiquewhite;margin-top: 5px;" alt="User Image"
             width="50" height="50">
         <p
-            style="font-size: 20px;font-weight: 500; margin-right: 20px;margin-top: 12px; margin-left: 10px; color: antiquewhite;">
+            style="font-size: 20px;font-weight: 500; margin-right: 20px;margin-top: 12px; margin-left: 10px; color: #616161;">
             {{name}}</p>
     </div>
 </div>
-<table class="table" style="background-color: #1f2029; height: 100vh;">
-    <thead class="thead-dark" style="color: white;">
-        <tr>
-            <th scope="col" style="width: 100px;height: 60px;">Image</th>
-            <th scope="col">Property Name</th>
-            <th scope="col">Description & Contact Details</th>
-            <th scope="col">Address</th>
-            <th scope="col">City</th>
-
-        </tr>
-    </thead>
-    <tbody style="color: white;">
-        <tr *ngFor="let usr of readProps">
-            <td><img src={{usr.img}} alt="No Image" style="border-radius: 10px;background-color: grey;" width="100"
-                    height="100"></td>
-            <td>{{usr.title}}</td>
-            <td>{{usr.info}}</td>
-            <td>{{usr.Address}}</td>
-            <td>{{usr.City}}</td>
-        </tr>
-    </tbody>
-</table>
+<div style="background-color: #F5F5F5;display: flex;">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <ul class="cards" *ngFor="let usr of readProps">
+        <li style="color: #F5F5F5;">
+            <a href="" class="card">
+                <img src={{usr.img}} class="card__image" alt="" />
+                <div class="card__overlay">
+                    <div class="card__header">
+                        <div>
+                            <h3 style="font-size: 18px; color: black;">{{usr.title}}</h3>
+                            <h4 style="font-size: 10px; color: black;">{{usr.nameUser}}</h4>
+                        </div>
+                        <img class="card__thumb" src="{{usr.imgUser}}" alt="" />
+                    </div>
+                    <p style="color: black;padding-left: 30px;padding-right: 30px;padding-bottom: 10px; font-size: 12px;"><i class="fa fa-home" style="color: black;"></i>  {{usr.Address}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>
 <router-outlet></router-outlet>

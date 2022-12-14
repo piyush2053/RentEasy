@@ -1,49 +1,107 @@
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #fef8f8;
+}
+
+.cards {
+  box-shadow: 0 8px 50px 0 rgba(16,39,112,.2);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  border-radius: 50px;
+  margin: 4rem 5vw;
+  height: 300px;
+  width: 200px;
+  padding: 0;
+  list-style-type: none;
+}
+
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-  }
+  position: relative;
+  display: block;
+  height: 100%;  
+  border-radius: 15px;
+  overflow: hidden;
+  text-decoration: none;
   
-  .title {
-    color: grey;
-    font-size: 18px;
-  }
-  
-  button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
-  }
-  
-  a {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
-  }
-  
-  button:hover, a:hover {
-    opacity: 0.7;
-  }
+}
+
+.card__image {      
+  width: 100%;
+  height: max-content;
+}
+
+.card__overlay {
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.75);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;      
+  border-radius: 15px;    
+  background-color: white;      
+  transform: translateY(100%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  box-shadow: 0px -7px 3px rgba(193, 192, 192, 0.25);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 25px;
+  border-top-left-radius: 25px;
+  background-color: white;
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
 
 
-  .wrapper {
-    height: 400px;
-    width: 400px;
-    background-image: url('https://i.imgur.com/iAgdW.jpg');
-    background-size: cover;
-  }
-  
-  .inner {
-    background-color: rgba(255, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    padding: 50px;
-  }
+.card__arc path {
+  background-color: white;
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+}       
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;      
+  border-radius: 50%;      
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 .3em;
+  color: #6A515E;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";  
+  font-size: .8em; 
+  color: #D7BDCA;  
+}
+
+.card__status {
+  font-size: .8em;
+  color:white;
+}
