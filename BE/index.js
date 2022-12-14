@@ -33,7 +33,7 @@ db.connect(err => {
 //get properties data from DB
 app.get("/properties", (req, res) => {
     console.log("Api running to fetch from Database only (Query SQL)");
-    let qrr = `SELECT * FROM properties order by id;`;
+    let qrr = `SELECT * FROM properties order by id desc;`;
     db.query(qrr, (err, results) => {
         if (err) {
             console.log("Error", err);

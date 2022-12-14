@@ -15,7 +15,7 @@ body {
 .cards {
   box-shadow: 0 8px 50px 0 rgba(16,39,112,.2);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
   gap: 2rem;
   border-radius: 50px;
   margin: 4rem 5vw;

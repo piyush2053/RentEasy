@@ -1,4 +1,4 @@
-<div class="section" style="background-color: #1f2029; ">
+<div class="section">
     <div class="container">
         <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{errMsg}}</strong>
@@ -12,7 +12,7 @@
                             <div class="card-front">
                                 <div class="center-wrap">
                                     <form class="section text-center" [formGroup]="userForm" (ngSubmit)="userSubmit()">
-                                        <h4 class="mb-4 pb-3" style="color: antiquewhite;">Sign Up</h4>
+                                        <h4 class="mb-4 pb-3" style="color: #75777c;">Sign Up</h4>
                                         <div class="form-group">
                                             <input type="text" name="logname" class="form-style"
                                                 placeholder="Your Full Name" formControlName="name" autocomplete="off">

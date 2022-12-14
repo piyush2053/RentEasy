@@ -1,4 +1,48 @@
-<div style="background-color: #1f2029;">
+<div class="container">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <div class="table-wrapper">
+    <div class="table-title">
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>Admin<b> Panel</b></h2>
+        </div>
+        <div class="col-sm-6">
+          <a class="btn btn-success" href="/add-property" data-toggle="modal"><i class="fa fa-home"></i>
+            <span>Add New Property</span></a>
+          <a class="btn btn-danger" href="/" data-toggle="modal"><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: 10px;">Image</th>
+          <th scope="col">Property Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">Owner</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usr of readProps">
+          <td><img src={{usr.img}} alt="No Image" style="border-radius: 50px;" width="70" height="70"></td>
+          <td>{{usr.title}}</td>
+          <td>{{usr.info}}</td>
+          <td>{{usr.Address}}</td>
+          <td>{{usr.City}}</td>
+          <td><div style="display: flex;"><p style="font-size: 10px; margin-top: 7px;">{{usr.nameUser}}</p> <img src={{usr.imgUser}} alt="No Image" style="border-radius: 50px;" width="40" height="40"></div></td>
+          <td><button class="btn btn-danger" [disabled]="!validate" (click)="deleteUser(usr.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+<!-- <div style="background-color: #1f2029;">
   <div style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;background-color: #1f2029;">
     <h2 style="margin-left: 5px; margin-right: 10px;color: antiquewhite;">Manage Properties</h2>
     <button type="button" class="btn1" [disabled]="!validate" (click)="navigateToAddProperty()">Add
@@ -34,4 +78,4 @@
     </tbody>
   </table>
 </div>
-<router-outlet></router-outlet>
+ -->

@@ -1,19 +1,19 @@
 <div
-    style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between;background-color: #F5F5F5;">
+    style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between;background-color: white;">
     <div style="display: flex; border-radius: 30px;">
-        <h2 style="margin-left: 5px; margin-right: 10px;padding-top: 10px; color: #616161;">Properties Near You
+        <h2 style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; color: #616161;">Properties Near You
         </h2>
         <button type="button" class="btn btn-primary" [hidden]="!validate" (click)="navigateToManage()"
-            style="margin-top: 13px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;">Manage
+            style="margin-top: 35px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;">Manage
             Properties
         </button>
         <p [hidden]="!validate"
-            style="margin-top: 20px; margin-left: 10px;font-size: 13px; font-weight: 780;color: rgb(33, 228, 56);height: fit-content;width: fit-content;">
+            style="margin-top: 40px; margin-left: 10px;font-size: 13px; font-weight: 780;color: rgb(33, 228, 56);height: fit-content;width: fit-content;">
             Admin
         </p>
     </div>
     <div
-        style="display: flex; background-color: #EFEBE9; border-radius: 30px; margin-right: 10px;box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);">
+        style="display: flex; background-color: #EFEBE9; border-radius: 30px;margin-top: 20px; margin-right: 90px;box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);">
         <img src="{{imgUrl}}" style="border-radius: 60px; border-color: antiquewhite;margin-top: 5px;" alt="User Image"
             width="50" height="50">
         <p
@@ -21,11 +21,11 @@
             {{name}}</p>
     </div>
 </div>
-<div style="background-color: #F5F5F5;display: flex;">
+<div style="background-color: white;display: flex;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <ul class="cards" *ngFor="let usr of readProps">
         <li style="color: #F5F5F5;">
-            <a href="" class="card">
+            <a class="card">
                 <img src={{usr.img}} class="card__image" alt="" />
                 <div class="card__overlay">
                     <div class="card__header">

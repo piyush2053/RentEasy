@@ -147,7 +147,6 @@ h6 span{
 
 
 .form-group{ 
-  
   position: relative;
   display: block;
     margin: 0;
@@ -260,7 +259,7 @@ h6 span{
   text-align: center;
   border: none;
   background-color: #75777c;
-  color: #000000;
+  color: white;
   box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2);
 }
 .btn:active,
@@ -271,7 +270,7 @@ h6 span{
 }
 .btn:hover{  
   background-color: #75777c;
-  color: white;
+  color: black;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
