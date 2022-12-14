@@ -1,7 +1,9 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div
     style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between;background-color: white;">
     <div style="display: flex; border-radius: 30px;">
-        <h2 style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; color: #616161;">Properties Near You
+        <h2 style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; color: #616161;">Properties
+            Near You
         </h2>
         <button type="button" class="btn btn-primary" [hidden]="!validate" (click)="navigateToManage()"
             style="margin-top: 35px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;">Manage
@@ -17,12 +19,13 @@
         <img src="{{imgUrl}}" style="border-radius: 60px; border-color: antiquewhite;margin-top: 5px;" alt="User Image"
             width="50" height="50">
         <p
-            style="font-size: 20px;font-weight: 500; margin-right: 20px;margin-top: 12px; margin-left: 10px; color: #616161;">
+            style="font-size: 20px;font-weight: 500; margin-right: 20px;margin-top: 10px;margin-left: 10px; color: #616161;">
             {{name}}</p>
+        <a class="btn btn-danger" href="/" style="padding-top: 13px;box-shadow: 0px -4px 8px rgba(255, 0, 0, 0.18);" data-toggle="modal"><i class="fa fa-sign-out"></i></a>
     </div>
 </div>
 <div style="background-color: white;display: flex;">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <ul class="cards" *ngFor="let usr of readProps">
         <li style="color: #F5F5F5;">
             <a class="card">
@@ -35,7 +38,10 @@
                         </div>
                         <img class="card__thumb" src="{{usr.imgUser}}" alt="" />
                     </div>
-                    <p style="color: black;padding-left: 30px;padding-right: 30px;padding-bottom: 10px; font-size: 12px;"><i class="fa fa-home" style="color: black;"></i>  {{usr.Address}}</p>
+                    <p
+                        style="color: black;padding-left: 30px;padding-right: 30px;padding-bottom: 10px; font-size: 12px;">
+                        <i class="fa fa-home" style="color: black;"></i> {{usr.Address}}
+                    </p>
                 </div>
             </a>
         </li>
