@@ -48,4 +48,8 @@ export class HomepageComponent implements OnInit {
   navigateToManage(){
     this.router.navigateByUrl('/delete');
   }
+
+  navigateToAddProperty(){
+    this.router.navigateByUrl('/add-property')
+  }
 }
