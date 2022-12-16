@@ -1,27 +1,27 @@
-
-<div class="section" >
+<div class="section">
     <div class="container">
         <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{errMsg}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <div class="row full-height justify-content-center">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <div class="col-12 text-center align-self-center py-5">
                 <div class="section pb-5 pt-5 pt-sm-2 text-center">
                     <div class="card-3d-wrap mx-auto">
                         <div class="card-3d-wrapper">
                             <div class="card-front">
                                 <div class="center-wrap">
-                                    <form class="section text-center" [formGroup]="propForm" (ngSubmit)="propSubmit()" >
+                                    <form class="section text-center" [formGroup]="propForm" (ngSubmit)="propSubmit()">
                                         <h4 class="mb-4 pb-3" style="color: rgb(36, 36, 36);">List Your Property</h4>
                                         <div class="form-group">
                                             <input type="text" class="form-style" placeholder="Your Property Title"
                                                 formControlName="title" autocomplete="off">
                                         </div>
                                         <div class="form-group mt-2">
-                                            <input type="text" class="form-style" placeholder="Description and Contact"
-                                                formControlName="info" autocomplete="off">
+                                            <input type="text" maxlength="10"class="form-style" placeholder="Contact Number"
+                                                formControlName="mobile" autocomplete="off">
                                             <i class="input-icon uil uil-at"></i>
                                         </div>
                                         <div class="form-group mt-2">
@@ -37,6 +37,21 @@
                                             <input type="text" class="form-style" placeholder="Image URL"
                                                 formControlName="img" autocomplete="off">
                                         </div>
+                                        <div class="form-group mt-2">
+                                            <select style=" color: rgb(0, 0, 0);
+                                            opacity: 0.7;" class="form-style"
+                                                formControlName="propType">
+                                                <option value="" disabled selected>Property Type</option>
+                                                <option value="Sell">Sell</option>
+                                                <option value="Rent">Rent</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-2">
+                                            <input type="text" maxlength="10"class="form-style" placeholder="Price"
+                                                formControlName="price" autocomplete="off">
+                                            <i class="input-icon uil uil-at"></i>
+                                        </div>
+
                                         <!-- <a href="#" class="btn mt-4">submit</a> -->
                                         <button type="submit" class="btn mt-4">Submit</button>
                                     </form>
@@ -49,5 +64,5 @@
             </div>
         </div>
 
-        
+
         <router-outlet></router-outlet>

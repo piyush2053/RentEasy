@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         // alert("Succesfully Login !")
         if (res.message === 'Logged in') {
           this.router.navigateByUrl('/home');
+          
         }
         else {
           alert("Wrong Credentials !")

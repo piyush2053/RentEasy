@@ -52,13 +52,15 @@ app.get("/properties", (req, res) => {
 app.post("/create-properties", (req, res) => {
     console.log("Post api to add property");
     let title = req.body.title;
-    let info = req.body.info;
+    let mobile = req.body.mobile;
     let address = req.body.address;
     let city = req.body.city;
     let img = req.body.img;
     let nameUser = req.body.nameUser;
     let imgUser = req.body.imgUser;
-    let qr = `insert into properties (title,info,address,city,img,nameUser,imgUser) value ("${title}","${info}","${address}","${city}","${img}","${nameUser}","${imgUser}");`;
+    let propType = req.body.propType;
+    let price = req.body.price;
+    let qr = `insert into properties (title,address,city,img,nameUser,imgUser,mobile,propType,price) value ("${title}","${address}","${city}","${img}","${nameUser}","${imgUser}","${mobile}","${propType}","${price}");`;
     //Pushing the new user into Database
     db.query(qr, (err) => {
         if (err) {

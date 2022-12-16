@@ -20,10 +20,14 @@
             Admin
         </p>
     </div>
-    <div
-        style="display: flex; background-color: #EFEBE9; border-radius: 30px;margin-top: 20px; margin-right: 90px;box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);">
-        <img src="{{imgUrl}}" style="border-radius: 60px; border-color: antiquewhite;margin-top: 5px;" alt="User Image"
-            width="50" height="50">
+    <div class="p12">
+        <div [hidden]="!imageLoader" class="loader1">
+            <div class="spinner">
+            </div>
+        </div>
+        <img src="{{imgUrl}}" [hidden]="imageLoader" (load)="this.imageLoader = false;"
+            style="border-radius: 60px; border-color: antiquewhite;margin-top: 5px;" alt="User Image" width="50"
+            height="50">
         <p
             style="font-size: 20px;font-weight: 500; margin-right: 20px;margin-top: 10px;margin-left: 10px; color: #616161;">
             {{name}}</p>
@@ -32,27 +36,41 @@
     </div>
 </div>
 
+
 <div style="background-color: white; display: grid;margin-left: 70px; margin-right: 45px;
 grid-template-columns: repeat(4, 1fr);
 gap: 1px;">
-    <ul class="cards"  *ngFor="let usr of readProps">
+    <ul class="cards" *ngFor="let usr of readProps">
         <li style="color: #F5F5F5;">
             <a class="card">
                 <img src="{{usr.img}}" class="card__image" alt="" />
                 <div class="card__overlay">
                     <div class="card__header">
                         <div>
-                            <h3 style="font-size: 18px; color: black;">{{usr.title}}</h3>
+                            <h3 style="font-size: 18px; color: black;" id="title1">{{usr.title}}</h3>
                             <h4 style="font-size: 10px; color: black;">{{usr.nameUser}}</h4>
                         </div>
-                        <img class="card__thumb" src="{{usr.imgUser}}" style="background-color: #F5F5F5;" alt="" />
+                        <div [hidden]="!imageLoader" class="loader">
+                            <div class="spinner">
+                            </div>
+                        </div>
+                        <img class="card__thumb" [hidden]="imageLoader" (load)="this.imageLoader = false;"
+                            src="{{usr.imgUser}}" style="background-color: #F5F5F5;" alt="" />
                     </div>
-                    <p
-                        style="color: black;padding-left: 30px;padding-right: 30px;padding-bottom: 10px; font-size: 12px;">
-                        <i class="fa fa-home" style="color: black;"></i> {{usr.Address}}
+                    <p style="color: black;padding-left: 30px;padding-right: 30px;font-size: 12px;">
+                        <i class="fa fa-home" style="color: black;"></i> {{usr.Address}}, {{usr.City}}
                     </p>
+                    <button id="callButton" class="btn btn-primary" (click)="call()"
+                        style="box-shadow: none;color: white;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white; margin-left: 25px;margin-bottom: 15px;"><i
+                            class="fa fa-phone" style="color: white;"></i> {{usr.mobile}}</button>
                 </div>
             </a>
+
+            <div
+                style="width: max-content;height: 20px;padding-left: 25px; padding-right: 25px;box-shadow: 0px -4px 8px rgba(40, 21, 216, 0.25);padding-bottom: 27px;color: white;background-color: #1976D2;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; margin-right: auto;">
+                {{usr.propType}}  @ &#8377; {{usr.price}} only/-</div>
+
+
         </li>
     </ul>
 

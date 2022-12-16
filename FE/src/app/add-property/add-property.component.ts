@@ -33,21 +33,26 @@ export class AddPropertyComponent implements OnInit {
   }
   propForm = new FormGroup({
     'title': new FormControl('', Validators.required),
-    'info': new FormControl('', Validators.required),
+    'mobile': new FormControl('', Validators.required),
     'address': new FormControl('', Validators.required),
     'city': new FormControl('', Validators.required),
     'img': new FormControl('', Validators.required),
     'nameUser': new FormControl(''),
     'imgUser': new FormControl(''),
+    'propType': new FormControl('',Validators.required),
+    'price': new FormControl('',Validators.required),
+    
   })
 
   propSubmit() {
     if (this.propForm.valid) {
       let title1 = this.propForm.value.title;
-      let info1 = this.propForm.value.info;
       let address1 = this.propForm.value.address;
       let city1 = this.propForm.value.city;
       let img1 = this.propForm.value.img;
+      let mobile = this.propForm.value.mobile;
+      let propType = this.propForm.value.propType;
+      let price = this.propForm.value.price;
       
       this.propForm.value["nameUser"] = this.name;
       this.propForm.value["imgUser"] = this.imgUrl;
