@@ -5,6 +5,8 @@ import { ApiserviceService } from '../apiservice.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
+
+
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -15,6 +17,7 @@ export class AddPropertyComponent implements OnInit {
   email:any;
   name:any;
   imgUrl:any;
+  
   constructor(private api: ApiserviceService, private router: Router, private http: HttpClient) {
     this.userinfo = window.localStorage.getItem('email');
     this.email = this.userinfo;
@@ -28,8 +31,6 @@ export class AddPropertyComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
   }
   propForm = new FormGroup({
     'title': new FormControl('', Validators.required),
@@ -39,6 +40,7 @@ export class AddPropertyComponent implements OnInit {
     'img': new FormControl('', Validators.required),
     'nameUser': new FormControl(''),
     'imgUser': new FormControl(''),
+    'email': new FormControl(''),
     'propType': new FormControl('',Validators.required),
     'price': new FormControl('',Validators.required),
     
@@ -55,6 +57,7 @@ export class AddPropertyComponent implements OnInit {
       let price = this.propForm.value.price;
       
       this.propForm.value["nameUser"] = this.name;
+      this.propForm.value["email"] = this.email;
       this.propForm.value["imgUser"] = this.imgUrl;
       console.log(this.propForm.value)
       this.api.createProperties(this.propForm.value).subscribe((res) => {

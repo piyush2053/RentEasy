@@ -43,6 +43,7 @@ export class HomepageComponent implements OnInit {
     })
     this.api.getProperty().subscribe((res) => {
       this.readProps = res.data;
+      console.log(this.readProps)
     })
   }
   logout() {

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql2');
+const axios = require('axios');
 
 
 const app = express();
@@ -48,6 +49,35 @@ app.get("/properties", (req, res) => {
 })
 //post properties in DB
 
+//Email part
+async function sendEmail(name, email, subject, message) {
+    const data = JSON.stringify({
+      "Messages": [{
+        "From": {"Email": "kickstartcodes@gmail.com", "Name": "Rent Easy"},
+        "To": [{"Email": email, "Name": name}],
+        "Subject": subject,
+        "TextPart": message
+      }]
+    });
+  
+    const config = {
+      method: 'post',
+      url: 'https://api.mailjet.com/v3.1/send',
+      data: data,
+      headers: {'Content-Type': 'application/json'},
+      auth: {username: '7c6d0f681bf935af8961905ae46b1ae6', password: 'f23dacbfc3cff9aada4dd69a4d1e4bcf'},
+    };
+  
+    return axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  
+  }
+
 //create data in db 
 app.post("/create-properties", (req, res) => {
     console.log("Post api to add property");
@@ -60,7 +90,13 @@ app.post("/create-properties", (req, res) => {
     let imgUser = req.body.imgUser;
     let propType = req.body.propType;
     let price = req.body.price;
-    let qr = `insert into properties (title,address,city,img,nameUser,imgUser,mobile,propType,price) value ("${title}","${address}","${city}","${img}","${nameUser}","${imgUser}","${mobile}","${propType}","${price}");`;
+    let email = req.body.email;
+    let subject = `Property Listed: ${title}`;
+    let message = `Hello,\n${nameUser} your property is now live wish us please be availble at your mobil number ${mobile} for the same.\nAddress: ${address}\n\nCity: ${city}\nPurpose: ${propType}\n\nThank You`;
+
+    sendEmail(nameUser, email, subject, message);
+
+    let qr = `insert into properties (title,address,city,img,nameUser,imgUser,mobile,propType,price,emailUser) value ("${title}","${address}","${city}","${img}","${nameUser}","${imgUser}","${mobile}","${propType}","${price}","${email}");`;
     //Pushing the new user into Database
     db.query(qr, (err) => {
         if (err) {
@@ -77,6 +113,22 @@ app.delete("/delete/:id", (req, res) => {
     console.log("API to delete property by id-:", req.params.id);
     let qrid = req.params.id;
     let qr = `DELETE FROM properties WHERE id=${qrid};`
+    let qr2 = `SELECT title,nameUser,emailUser from properties WHERE id=${qrid};`
+    
+    db.query(qr2, (err, results) => {
+        if (err) {
+            console.log("Error", err)
+        }
+        else {
+            let title = results[0].title
+            let name = results[0].nameUser
+            let email = results[0].emailUser
+            let subject = `Property Removed "${title}"`
+            let message = `Hello,\n${name} your property "${title}" was removed by Rent Easy team due to some violations done by you.\n\nThank You`;
+            sendEmail(name, email, subject, message);
+        }
+    })
+
     db.query(qr, (err, results) => {
         if (err) {
             console.log("Error", err)
