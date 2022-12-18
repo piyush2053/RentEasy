@@ -91,11 +91,12 @@ h6 span{
   position: relative;
   width: 440px;
   max-width: 100%;
-  height: 550px;
+  height: 580px;
+  
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   perspective: 800px;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 .card-3d-wrapper {
   width: 100%;

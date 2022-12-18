@@ -12,12 +12,14 @@ import { ApiserviceService } from '../apiservice.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private api: ApiserviceService,private router:Router) { }
+  constructor(private api: ApiserviceService,private router:Router) {
+    
+   }
   readUser: any;
   errMsg: any;
 
   ngOnInit(): void {
-
+    
   }
   userForm = new FormGroup({
     'name': new FormControl('', Validators.required),

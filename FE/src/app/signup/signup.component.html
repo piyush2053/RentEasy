@@ -1,47 +1,59 @@
-<div class="section">
-    <div class="container">
+<div class="header">
+    <div class="container1">
         <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{errMsg}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <div class="row full-height justify-content-center">
-            <div class="col-12 text-center align-self-center py-5">
-                <div class="section pb-5 pt-5 pt-sm-2 text-center">
-                    <div class="card-3d-wrap mx-auto">
-                        <div class="card-3d-wrapper">
-                            <div class="card-front">
-                                <div class="center-wrap">
-                                    <form class="section text-center" [formGroup]="userForm" (ngSubmit)="userSubmit()">
-                                        <h4 class="mb-4 pb-3" style="color: #75777c;">Sign Up</h4>
-                                        <div class="form-group">
-                                            <input type="text" name="logname" class="form-style"
-                                                placeholder="Your Full Name" formControlName="name" autocomplete="off">
-                                            <i class="input-icon uil uil-user"></i>
-                                        </div>
-                                        <div class="form-group mt-2">
-                                            <input type="email" name="logemail" class="form-style"
-                                                placeholder="Your Email" formControlName="email" autocomplete="off">
-                                            <i class="input-icon uil uil-at"></i>
-                                        </div>
-                                        <div class="form-group mt-2">
-                                            <input type="password" name="logpass" class="form-style"
-                                                placeholder="Your Password" formControlName="password"
-                                                autocomplete="off">
-                                            <i class="input-icon uil uil-lock-alt"></i>
-                                        </div>
-                                        <div class="form-group mt-2">
-                                            <input type="text" name="logname" class="form-style" placeholder="Image url"
-                                                formControlName="netImg" autocomplete="off">
-                                            <i class="input-icon uil uil-user"></i>
-                                        </div>
-                                        <!-- <a href="#" class="btn mt-4">submit</a> -->
-                                        <button type="submit" class="btn mt-4">Sign Up</button>
-                                    </form>
+        <div class="col-12 text-center align-self-center py-5">
+            <div class="card-3d-wrap mx-auto">
+                <div class="card-3d-wrapper">
+                    <div class="card-front">
+                        <div class="center-wrap">
+                            <form class="section text-center" [formGroup]="userForm" (ngSubmit)="userSubmit()">
+                                <h4 class="mb-4 pb-3" style="color: #75777c;">Sign Up</h4>
+                                <div class="form-group">
+                                    <input type="text" name="logname" class="form-style" placeholder="Your Full Name"
+                                        formControlName="name" autocomplete="off">
+                                    <i class="input-icon uil uil-user"></i>
                                 </div>
-                            </div>
+                                <div class="form-group mt-2">
+                                    <input type="email" name="logemail" class="form-style" placeholder="Your Email"
+                                        formControlName="email" autocomplete="off">
+                                    <i class="input-icon uil uil-at"></i>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <input type="password" name="logpass" class="form-style" placeholder="Your Password"
+                                        formControlName="password" autocomplete="off">
+                                    <i class="input-icon uil uil-lock-alt"></i>
+                                </div>
+                                <div class="form-group mt-2">
+                                    <input type="text" name="logname" class="form-style" placeholder="Image url"
+                                        formControlName="netImg" autocomplete="off">
+                                    <i class="input-icon uil uil-user"></i>
+                                </div>
+                                <!-- <a href="#" class="btn mt-4">submit</a> -->
+                                <button type="submit" class="btn mt-4">Sign Up</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <router-outlet></router-outlet>
+        <!--Waves Container-->
+
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </div>
+</div>
+<!--Waves end-->
+<router-outlet></router-outlet>
