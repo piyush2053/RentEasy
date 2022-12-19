@@ -27,10 +27,7 @@ export class HomepageComponent implements OnInit {
     this.email = this.userinfo;
     // this.name2 = this.email.split("@");
     // this.name = this.name2[0]
-    // const box = document.createElement("div");
-    // box.id = "call";
-    // box.innerText = 'Hello There';
-    // document.body.appendChild(box);
+
   }
   ngOnInit(): void {
     this.api.getNameByEmail(this.email).subscribe((res) => {
@@ -51,13 +48,12 @@ export class HomepageComponent implements OnInit {
     })
   }
   logout() {
-    window.localStorage.setItem("userStatus",'')
+    window.localStorage.setItem("userStatus", '')
     this.router.navigateByUrl('');
   }
-  call() {
-    this.number1 = document.getElementById("callButton")?.innerText;
-   
-    alert(`No Dialer Available to call`)
+  call(mobile:any) {
+    let number1 = mobile;
+    alert(`No Dialer Available to call ${number1}`)
   }
 
   navigateToManage() {
@@ -66,6 +62,17 @@ export class HomepageComponent implements OnInit {
 
   navigateToAddProperty() {
     this.router.navigateByUrl('/add-property')
+  }
+
+  toInfo(title:any,nameUser:any,address:any,city:any,mobile:any,imgUser:any,img:any){
+    window.localStorage.setItem("title",`${title}`)
+    window.localStorage.setItem("nameUser",`${nameUser}`)
+    window.localStorage.setItem("address",`${address}`)
+    window.localStorage.setItem("city",`${city}`)
+    window.localStorage.setItem("mobile",`${mobile}`)
+    window.localStorage.setItem("imgUser",`${imgUser}`)
+    window.localStorage.setItem("img",`${img}`)
+    this.router.navigateByUrl('/info')
   }
 
 }

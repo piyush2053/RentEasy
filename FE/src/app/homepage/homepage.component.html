@@ -15,10 +15,10 @@
             style="margin-top: 35px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;display: flex;">List
             your Property <i style="margin-left: 7px;margin-top: 4px;" class="fa fa-home"></i>
         </button>
-        <p [hidden]="!validate"
+        <a [hidden]="!validate"
             style="margin-top: 40px; margin-left: 10px;font-size: 13px; font-weight: 780;color: rgb(33, 228, 56);height: fit-content;width: fit-content;">
             Admin
-        </p>
+    </a>
     </div>
     <div class="p12">
         <div [hidden]="!imageLoader" class="loader1">
@@ -37,17 +37,17 @@
 </div>
 
 
-<div style="background-color: white; display: grid;margin-left: 70px; margin-right: 45px;
+<div id="title1" style="background-color: white; display: grid;margin-left: 70px; margin-right: 45px;
 grid-template-columns: repeat(4, 1fr);
 gap: 1px;">
-    <ul class="cards" *ngFor="let usr of readProps">
-        <li style="color: #F5F5F5;">
-            <a class="card">
+    <ul class="cards" *ngFor="let usr of readProps" >
+        <li style="color: #F5F5F5;" >
+            <a (click)="toInfo(usr.title,usr.nameUser,usr.Address,usr.City,usr.mobile,usr.imgUser,usr.img)" class="card" >
                 <img src="{{usr.img}}" class="card__image" alt="" />
-                <div class="card__overlay">
+                <div class="card__overlay" >
                     <div class="card__header">
                         <div>
-                            <h3 style="font-size: 18px; color: black;" id="title1">{{usr.title}}</h3>
+                            <h3 style="font-size: 18px; color: black;">{{usr.title}}</h3>
                             <h4 style="font-size: 10px; color: black;">{{usr.nameUser}}</h4>
                         </div>
                         <div [hidden]="!imageLoader" class="loader">
@@ -60,7 +60,7 @@ gap: 1px;">
                     <p style="color: black;padding-left: 30px;padding-right: 30px;font-size: 12px;">
                         <i class="fa fa-home" style="color: black;"></i> {{usr.Address}}, {{usr.City}}
                     </p>
-                    <button id="callButton" class="btn btn-primary" (click)="call()"
+                    <button id="callButton" class="btn btn-primary" (click)="call(usr.mobile)"
                         style="box-shadow: none;color: white;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white; margin-left: 25px;margin-bottom: 15px;"><i
                             class="fa fa-phone" style="color: white;"></i> {{usr.mobile}}</button>
                             <div class="call" id="call"></div>
@@ -70,10 +70,11 @@ gap: 1px;">
             <div
                 style="width: max-content;height: 20px;padding-left: 25px; padding-right: 25px;box-shadow: 0px -4px 8px rgba(40, 21, 216, 0.25);padding-bottom: 27px;color: white;background-color: #1976D2;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; margin-right: auto;">
                 {{usr.propType}}  @ &#8377; {{usr.price}} only/-</div>
-
-
         </li>
     </ul>
-
 </div>
+<!-- 
+Demosttraing DOM into Project in my channel so ignore this---------!
+<input  id="text12" type="text" class="form-style" placeholder="Add a task" autocomplete="off">
+<button class="btn btn-primary" (click)="addTask()" id="buttonAdd">Add Task</button> -->
 <router-outlet></router-outlet>

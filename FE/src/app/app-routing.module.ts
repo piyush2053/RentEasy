@@ -4,6 +4,7 @@ import { AddPropertyComponent } from './add-property/add-property.component';
 import { AppComponent } from './app.component';
 import { DeleteComponent } from './delete/delete.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { InfoComponent } from './info/info.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'home',component:HomepageComponent},
   {path:'delete',component:DeleteComponent},
-  {path:'add-property',component:AddPropertyComponent}
+  {path:'add-property',component:AddPropertyComponent},
+  {path:'info',component:InfoComponent}
 ];
 
 @NgModule({

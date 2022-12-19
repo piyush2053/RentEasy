@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div style="display: flex; justify-content: center;margin-bottom: 20px;border-radius: 30px;">
+    <h2 id="gg"
+        style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; font-size: 40px;color: #616161;">
+        {{title}}
+    </h2>
+</div>
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet"
+    href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+    integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+<link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+
+
+<body class="profile-page" >
+    <div style="margin-left: 75px;display: flex;margin-right: auto;align-items: center;justify-content: center;">
+        <img src="{{img}}" style=" border-radius: 20px;" alt="" />
+    </div>
+    <div class="main main-raised">
+        <div class="profile-content" style="display: flex;justify-content: center;align-items: center; ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="profile">
+                            <div class="avatar">
+                                <img src="{{imgUser}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            </div>
+                            <div class="name">
+                                <h3 class="title">{{nameUser}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="description text-center" style="margin-bottom: 15px;">
+                    <p>{{address}}</p>
+                    <button  class="btn btn-primary" (click)="call()"
+                    style="box-shadow: none;color: white;font-size: 20px;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white;"><i
+                        class="fa fa-phone" style="color: white; font-size: 20px;"></i> {{mobile}}</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<router-outlet></router-outlet>

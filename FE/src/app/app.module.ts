@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { DeleteComponent } from './delete/delete.component';
 import { AddPropertyComponent } from './add-property/add-property.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AddPropertyComponent } from './add-property/add-property.component';
     HomepageComponent,
     DeleteComponent,
     AddPropertyComponent,
+    InfoComponent,
   ],
   imports: [
     BrowserModule,
