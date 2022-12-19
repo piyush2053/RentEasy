@@ -7,9 +7,9 @@
           <h2>Admin<b> Panel</b></h2>
         </div>
         <div class="col-sm-6">
-          <a class="btn btn-success" href="/add-property" data-toggle="modal"><i class="fa fa-home"></i>
+          <a class="btn btn-success" id="addButton" href="/add-property" data-toggle="modal"><i class="fa fa-home"></i>
             <span>Add New Property</span></a>
-          <a class="btn btn-danger" href="/" data-toggle="modal"><i class="fa fa-sign-out"></i> <span>Logout</span></a>
+          <a class="btn btn-danger" (click)="logout()" ><i class="fa fa-sign-out"></i> <span>Logout</span></a>
         </div>
       </div>
     </div>

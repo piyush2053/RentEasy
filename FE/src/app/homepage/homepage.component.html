@@ -2,11 +2,11 @@
 <div
     style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between;background-color: white;">
     <div style="display: flex; border-radius: 30px;">
-        <h2 style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; color: #616161;">Properties
+        <h2 id="gg" style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; color: #616161;">Properties
             Near You
         </h2>
         <!-- Admin view -->
-        <button type="button" class="btn btn-primary" [hidden]="!validate" (click)="navigateToManage()"
+        <button type="button"  class="btn btn-primary" [hidden]="!validate" (click)="navigateToManage()"
             style="margin-top: 35px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;">Manage
             Properties
         </button>
@@ -63,6 +63,7 @@ gap: 1px;">
                     <button id="callButton" class="btn btn-primary" (click)="call()"
                         style="box-shadow: none;color: white;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white; margin-left: 25px;margin-bottom: 15px;"><i
                             class="fa fa-phone" style="color: white;"></i> {{usr.mobile}}</button>
+                            <div class="call" id="call"></div>
                 </div>
             </a>
 

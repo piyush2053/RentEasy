@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
         console.log(res);
         // alert("Succesfully Login !")
         if (res.message === 'Logged in') {
-            this.router.navigateByUrl('/home');
+          window.localStorage.setItem("userStatus", res.message)
+          this.router.navigateByUrl('/home');
         }
         else {
           alert("Wrong Credentials !")

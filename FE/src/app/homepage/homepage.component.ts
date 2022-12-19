@@ -27,6 +27,10 @@ export class HomepageComponent implements OnInit {
     this.email = this.userinfo;
     // this.name2 = this.email.split("@");
     // this.name = this.name2[0]
+    // const box = document.createElement("div");
+    // box.id = "call";
+    // box.innerText = 'Hello There';
+    // document.body.appendChild(box);
   }
   ngOnInit(): void {
     this.api.getNameByEmail(this.email).subscribe((res) => {
@@ -47,10 +51,12 @@ export class HomepageComponent implements OnInit {
     })
   }
   logout() {
+    window.localStorage.setItem("userStatus",'')
     this.router.navigateByUrl('');
   }
   call() {
     this.number1 = document.getElementById("callButton")?.innerText;
+   
     alert(`No Dialer Available to call`)
   }
 

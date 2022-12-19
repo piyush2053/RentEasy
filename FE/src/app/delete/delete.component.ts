@@ -26,14 +26,19 @@ export class DeleteComponent implements OnInit {
         this.validate = false;
       }
     })
+    
   }
 
   navigateToAddProperty(){
     this.router.navigateByUrl('/add-property');
   }
   logout() {
+    // let addButton = document.getElementById("addButton");
+    // addButton?.remove();
+    window.localStorage.setItem("userStatus",'')
     this.router.navigateByUrl('');
   }
+
 
   deleteUser(id:any){
     console.log(id,"-: Selected id")
