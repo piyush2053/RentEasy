@@ -1,6 +1,7 @@
 :root {
   --surface-color: #fff;
   --curve: 40;
+  width: 100%;
 }
 
 * {
@@ -8,6 +9,7 @@
 }
 
 body {
+  width: 100%;
   font-family: 'Noto Sans JP', sans-serif;
   background-color: #fef8f8;
 }

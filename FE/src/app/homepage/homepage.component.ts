@@ -20,6 +20,7 @@ export class HomepageComponent implements OnInit {
   imageLoader = true;
   number1: any;
   input: any;
+  bgColor: any;
 
 
   constructor(private api: ApiserviceService, private router: Router) {
@@ -30,6 +31,14 @@ export class HomepageComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    this.bgColor = "white";
+    this.api.getThemeColor().subscribe((res)=>{
+      this.bgColor = res.data;
+      document.body.style.backgroundColor = this.bgColor;
+    })
+    
+    
+    
     this.api.getNameByEmail(this.email).subscribe((res) => {
       this.name = res.data;
       this.imgUrl = res.body;
@@ -59,6 +68,8 @@ export class HomepageComponent implements OnInit {
   navigateToManage() {
     this.router.navigateByUrl('/delete');
   }
+
+  
 
   navigateToAddProperty() {
     this.router.navigateByUrl('/add-property')

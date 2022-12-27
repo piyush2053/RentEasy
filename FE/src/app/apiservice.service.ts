@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ApiserviceService {
   
   apiurl="https://renteasy-be.onrender.com/users"
+  bgColorUrl="https://renteasy-be.onrender.com/bg-color"
   createdata="https://renteasy-be.onrender.com/user"
   auth="https://renteasy-be.onrender.com/auth"
   nameByEmail="https://renteasy-be.onrender.com/name"
@@ -23,6 +24,9 @@ export class ApiserviceService {
   //Only Observing the data 
   getAllUser():Observable<any>{
     return this.http.get(`${this.apiurl}`)
+  }
+  getThemeColor():Observable<any>{
+    return this.http.get(`${this.bgColorUrl}`)
   }
   //create data
   createData(data:any):Observable<any>{

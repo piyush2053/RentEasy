@@ -56,6 +56,24 @@ app.get("/properties", (req, res) => {
 
     });
 })
+//getTheme Color
+app.get("/bg-color", (req, res) => {
+    console.log("Api running to fetch bg color");
+    let qrr = `SELECT bgcolor FROM user where id = 1;`;
+    db.query(qrr, (err, results) => {
+        if (err) {
+            console.log("Error", err);
+        } else {
+            res.send({
+                message: "theme color fetched from DB",
+                data: results
+            });
+        }
+
+    });
+})
+
+
 //post properties in DB
 
 //Email part
