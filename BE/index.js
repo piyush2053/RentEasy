@@ -14,14 +14,23 @@ app.listen(3000, () => {
     console.log('BE Running at Port 3000');
 })
 
-//connection to Database 
+// //connection to Database 
+// const db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'users',
+//     port: 3306
+// })
+//freeSQL databse
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'users',
+    host: 'sql6.freesqldatabase.com',
+    user: 'sql6586741',
+    password: 'WVbHsnwH2g',
+    database: 'sql6586741',
     port: 3306
 })
+
 //checking connection with Database
 db.connect(err => {
     if (err) {
@@ -52,31 +61,31 @@ app.get("/properties", (req, res) => {
 //Email part
 async function sendEmail(name, email, subject, message) {
     const data = JSON.stringify({
-      "Messages": [{
-        "From": {"Email": "kickstartcodes@gmail.com", "Name": "Rent Easy"},
-        "To": [{"Email": email, "Name": name}],
-        "Subject": subject,
-        "TextPart": message
-      }]
+        "Messages": [{
+            "From": { "Email": "kickstartcodes@gmail.com", "Name": "Rent Easy" },
+            "To": [{ "Email": email, "Name": name }],
+            "Subject": subject,
+            "TextPart": message
+        }]
     });
-  
+
     const config = {
-      method: 'post',
-      url: 'https://api.mailjet.com/v3.1/send',
-      data: data,
-      headers: {'Content-Type': 'application/json'},
-      auth: {username: '7c6d0f681bf935af8961905ae46b1ae6', password: 'f23dacbfc3cff9aada4dd69a4d1e4bcf'},
+        method: 'post',
+        url: 'https://api.mailjet.com/v3.1/send',
+        data: data,
+        headers: { 'Content-Type': 'application/json' },
+        auth: { username: '7c6d0f681bf935af8961905ae46b1ae6', password: 'f23dacbfc3cff9aada4dd69a4d1e4bcf' },
     };
-  
+
     return axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  
-  }
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+}
 
 //create data in db 
 app.post("/create-properties", (req, res) => {
@@ -114,7 +123,7 @@ app.delete("/delete/:id", (req, res) => {
     let qrid = req.params.id;
     let qr = `DELETE FROM properties WHERE id=${qrid};`
     let qr2 = `SELECT title,nameUser,emailUser from properties WHERE id=${qrid};`
-    
+
     db.query(qr2, (err, results) => {
         if (err) {
             console.log("Error", err)

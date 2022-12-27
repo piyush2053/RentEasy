@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiserviceService {
-
-  apiurl="http://localhost:3000/users"
-  createdata="http://localhost:3000/user"
-  auth="http://localhost:3000/auth"
-  nameByEmail="http://localhost:3000/name"
-  getProperties="http://localhost:3000/properties"
-  createProperty="http://localhost:3000/create-properties"
-  deleteProperty="http://localhost:3000/delete"
-  mail1= "http://localhost:3000/sendmail"
+  
+  apiurl="https://renteasy-be.onrender.com/users"
+  createdata="https://renteasy-be.onrender.com/user"
+  auth="https://renteasy-be.onrender.com/auth"
+  nameByEmail="https://renteasy-be.onrender.com/name"
+  getProperties="https://renteasy-be.onrender.com/properties"
+  createProperty="https://renteasy-be.onrender.com/create-properties"
+  deleteProperty="https://renteasy-be.onrender.com/delete"
+  mail1= "https://renteasy-be.onrender.com/sendmail"
   
 
   
