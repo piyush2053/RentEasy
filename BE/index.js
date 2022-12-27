@@ -73,6 +73,20 @@ app.get("/bg-color", (req, res) => {
     });
 })
 
+//create data in db 
+app.post("/bg-color", (req, res) => {
+    let colorBG = req.body.colorBG;
+    let qr = `UPDATE user SET bgcolor= ${colorBG} WHERE  id = 6;`;
+    db.query(qr, (err) => {
+        if (err) {
+            console.log("Error", err)
+        }
+        res.send({
+            message: "Pushed Color into DB"
+        });
+
+    })
+})
 
 //post properties in DB
 
