@@ -59,7 +59,7 @@ app.get("/properties", (req, res) => {
 //getTheme Color
 app.get("/bg-color", (req, res) => {
     console.log("Api running to fetch bg color");
-    let qrr = `SELECT bgcolor FROM user where id = 1;`;
+    let qrr = `SELECT bgcolor FROM user where id = 6;`;
     db.query(qrr, (err, results) => {
         if (err) {
             console.log("Error", err);

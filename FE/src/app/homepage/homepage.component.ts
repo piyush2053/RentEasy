@@ -33,7 +33,8 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.bgColor = "white";
     this.api.getThemeColor().subscribe((res)=>{
-      this.bgColor = res.data;
+      this.bgColor = res.data[0].bgcolor;
+      window.localStorage.setItem("themeColor",this.bgColor)
       document.body.style.backgroundColor = this.bgColor;
     })
     
