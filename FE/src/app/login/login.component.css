@@ -144,7 +144,7 @@ h6 span {
   border-radius: 20px;
   display: block;
   background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(243, 243, 243, 0.2);
+  box-shadow: 0 2px 4px 0.5px rgba(1, 1, 1, 0.2);
   
 }
 
@@ -293,8 +293,8 @@ h6 span {
 
 
 p {
-  font-family: 'Lato', sans-serif;
-  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.1px;
   font-size: 14px;
   color: #333333;
 }
@@ -306,16 +306,21 @@ p {
 
 h1 {
   font-family: 'Poppins', sans-serif;
-  font-size: 70px;
-  color: white;
+  font-size: 50px;
+  font-weight: 680;
+  color:black;
+  background-image: url('https://static.vecteezy.com/system/resources/previews/007/535/400/original/blurred-and-soft-blue-gradient-background-free-vector.jpg');
+  background-clip: text;
+  color: transparent !important;
+  /* text-shadow: 0px 0px 8px rgba(111, 106, 106, 0.45); */
 }
 
-
 .header {
-  margin-top: 40px;
+  margin-top: 60px;
   height: 100%;
   width: 100%;
   text-align: center;
   color: white;
 
 }
+

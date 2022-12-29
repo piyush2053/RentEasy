@@ -27,15 +27,10 @@ export class InfoComponent implements OnInit {
     this.mobile = window.localStorage.getItem("mobile")
     this.imgUser = window.localStorage.getItem("imgUser")
     this.img = window.localStorage.getItem("img")
-    
-    
-    
-    
-    
   }
 
   call(){
-    window.open(`https://wa.me/${this.mobile}?text=I%27m%20api%20msg%20Hello%20${this.nameUser}%20I%20am%20interested%20in%20your%20property%20${this.title}`, '_blank');
+    window.open(`https://wa.me/${this.mobile}?text=Hello%20${this.nameUser}%20I%20am%20interested%20in%20your%20property%20${this.title}`, '_blank');
   }
   logout() {
     window.localStorage.setItem("userStatus", '')

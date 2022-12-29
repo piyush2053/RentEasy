@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(private api: ApiserviceService, private router: Router) { }
   readUser: any;
   ngOnInit(): void {
-    document.body.style.background = 'linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)';
+    document.body.style.background = "white";
   }
   loginForm = new FormGroup({
     'email': new FormControl('', Validators.required),

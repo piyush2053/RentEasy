@@ -1,5 +1,5 @@
 <div class="header">
-    <div class="container1">
+    
         <div *ngIf="errMsg" class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{errMsg}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -7,7 +7,7 @@
         <div class="col-12 text-center align-self-center py-5">
             <div class="card-3d-wrap mx-auto">
                 <div class="card-3d-wrapper">
-                    <div class="card-front">
+                    
                         <div class="center-wrap">
                             <form class="section text-center" [formGroup]="userForm" (ngSubmit)="userSubmit()">
                                 <h4 class="mb-4 pb-3" style="color: #75777c;">Sign Up</h4>
@@ -35,9 +35,8 @@
                                 <button type="submit" class="btn mt-4">Sign Up</button>
                             </form>
                         </div>
-                    </div>
+                    
                 </div>
-            </div>
         </div>
         <!--Waves Container-->
 
