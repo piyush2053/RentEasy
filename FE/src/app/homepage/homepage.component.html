@@ -44,7 +44,7 @@
 grid-template-columns: repeat(4, 1fr);
 gap: 1px;">
     <ul class="cards" *ngFor="let usr of readProps" >
-        <li>
+        <li style="color: #fef8f8;">
             <a (click)="toInfo(usr.title,usr.nameUser,usr.Address,usr.City,usr.mobile,usr.imgUser,usr.img)" class="card" >
                 <img src="{{usr.img}}" class="card__image" alt="" />
                 <div class="card__overlay" >
@@ -63,7 +63,7 @@ gap: 1px;">
                     <p style="color: black;padding-left: 30px;padding-right: 30px;font-size: 12px;">
                         <i class="fa fa-home" style="color: black;"></i> {{usr.Address}}, {{usr.City}}
                     </p>
-                    <button id="callButton" class="btn btn-primary" (click)="call(usr.mobile)"
+                    <button id="callButton" class="btn btn-primary"
                         style="box-shadow: none;color: white;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white; margin-left: 25px;margin-bottom: 15px;"><i
                             class="fa fa-phone" style="color: white;"></i> {{usr.mobile}}</button>
                             <div class="call" id="call"></div>

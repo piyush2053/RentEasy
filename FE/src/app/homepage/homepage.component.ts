@@ -61,11 +61,6 @@ export class HomepageComponent implements OnInit {
     window.localStorage.setItem("userStatus", '')
     this.router.navigateByUrl('');
   }
-  call(mobile:any) {
-    let number1 = mobile;
-    alert(`No Dialer Available to call ${number1}`)
-  }
-
   navigateToManage() {
     this.router.navigateByUrl('/delete');
   }

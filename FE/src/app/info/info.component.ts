@@ -30,12 +30,6 @@ export class InfoComponent implements OnInit {
     this.router.navigateByUrl('');
   }
 
-  call() {
-    var PhoneNumber = this.mobile.text();
-    PhoneNumber = PhoneNumber.replace('Phone:', '');
-    window.location.href = 'tel://' + PhoneNumber;
-    console.log('calling', this.mobile)
-  }
 
 
 }

@@ -42,9 +42,11 @@
                 </div>
                 <div class="description text-center" style="margin-bottom: 15px;">
                     <p>{{address}}</p>
-                    <button  class="btn btn-primary" (click)="call()"
+                    <a href="whatsapp://send?abid={{mobile}}&text=Hello%2C%20RentEasy!" style="box-shadow: none;color: white;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white; margin-left: 25px;margin-bottom: 15px;padding: 5px;"><i
+                        class="fa fa-phone" style="color: white;"></i> {{mobile}}</a>
+                    <!-- <button  class="btn btn-primary" (click)="call()"
                     style="box-shadow: none;color: white;font-size: 20px;border-radius: 15px;background-color: rgb(31, 206, 58);border-color: white;"><i
-                        class="fa fa-phone" style="color: white; font-size: 20px;"></i> {{mobile}}</button>
+                        class="fa fa-phone" style="color: white; font-size: 20px;"></i> {{mobile}}</button> -->
                 </div>
                 
             </div>
