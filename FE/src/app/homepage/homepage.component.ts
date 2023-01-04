@@ -1,6 +1,7 @@
 import { splitNsName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { count } from 'rxjs';
 import { ApiserviceService } from '../apiservice.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class HomepageComponent implements OnInit {
   email: any;
   imgUrl: any;
   readProps: any;
+  readCities: any;
   validate = true;
   messageVisible = false;
   mobile: any;
@@ -21,6 +23,7 @@ export class HomepageComponent implements OnInit {
   number1: any;
   input: any;
   bgColor: any;
+  countCity: any;
 
 
   constructor(private api: ApiserviceService, private router: Router) {
@@ -32,14 +35,11 @@ export class HomepageComponent implements OnInit {
   }
   ngOnInit(): void {
     this.bgColor = "white";
-    this.api.getThemeColor().subscribe((res)=>{
-      this.bgColor = res.data[0].bgcolor;
-      window.localStorage.setItem("themeColor",this.bgColor)
-      document.body.style.backgroundColor = this.bgColor;
-    })
-    
-    
-    
+    // this.api.getThemeColor().subscribe((res)=>{
+    //   this.bgColor = res.data[0].bgcolor;
+    //   window.localStorage.setItem("themeColor",this.bgColor)
+    //   document.body.style.backgroundColor = this.bgColor;
+    // })
     this.api.getNameByEmail(this.email).subscribe((res) => {
       this.name = res.data;
       this.imgUrl = res.body;
@@ -54,7 +54,14 @@ export class HomepageComponent implements OnInit {
     })
     this.api.getProperty().subscribe((res) => {
       this.readProps = res.data;
-      console.log(this.readProps)
+      console.log(this.readProps.city)
+    })
+    this.api.getCities().subscribe((res) => {
+      this.readCities = res.data;
+      this.countCity = this.readCities.length
+      console.log(this.countCity)
+      
+      
     })
   }
   logout() {
@@ -64,21 +71,19 @@ export class HomepageComponent implements OnInit {
   navigateToManage() {
     this.router.navigateByUrl('/delete');
   }
-
-  
-
   navigateToAddProperty() {
     this.router.navigateByUrl('/add-property')
   }
 
-  toInfo(title:any,nameUser:any,address:any,city:any,mobile:any,imgUser:any,img:any){
-    window.localStorage.setItem("title",`${title}`)
-    window.localStorage.setItem("nameUser",`${nameUser}`)
-    window.localStorage.setItem("address",`${address}`)
-    window.localStorage.setItem("city",`${city}`)
-    window.localStorage.setItem("mobile",`${mobile}`)
-    window.localStorage.setItem("imgUser",`${imgUser}`)
-    window.localStorage.setItem("img",`${img}`)
+  toInfo(title: any, nameUser: any, address: any, city: any, mobile: any, imgUser: any, img: any, price: any) {
+    window.localStorage.setItem("title", `${title}`)
+    window.localStorage.setItem("nameUser", `${nameUser}`)
+    window.localStorage.setItem("address", `${address}`)
+    window.localStorage.setItem("city", `${city}`)
+    window.localStorage.setItem("mobile", `${mobile}`)
+    window.localStorage.setItem("imgUser", `${imgUser}`)
+    window.localStorage.setItem("img", `${img}`)
+    window.localStorage.setItem("price", `${price}`)
     this.router.navigateByUrl('/info')
   }
 

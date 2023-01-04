@@ -1,21 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiserviceService {
   
-  apiurl="https://renteasy-be.onrender.com/users"
-  bgColorUrl="https://renteasy-be.onrender.com/bg-color"
-  createdata="https://renteasy-be.onrender.com/user"
-  auth="https://renteasy-be.onrender.com/auth"
-  nameByEmail="https://renteasy-be.onrender.com/name"
-  getProperties="https://renteasy-be.onrender.com/properties"
-  createProperty="https://renteasy-be.onrender.com/create-properties"
-  deleteProperty="https://renteasy-be.onrender.com/delete"
-  mail1= "https://renteasy-be.onrender.com/sendmail"
+  //prod
+  // apiurl="https://renteasy-be.onrender.com/users"
+  // bgColorUrl="https://renteasy-be.onrender.com/bg-color"
+  // createdata="https://renteasy-be.onrender.com/user"
+  // auth="https://renteasy-be.onrender.com/auth"
+  // nameByEmail="https://renteasy-be.onrender.com/name"
+  // getProperties="https://renteasy-be.onrender.com/properties"
+  // createProperty="https://renteasy-be.onrender.com/create-properties"
+  // deleteProperty="https://renteasy-be.onrender.com/delete"
+  // mail1= "https://renteasy-be.onrender.com/sendmail"
+  // getCityUrl = "https://renteasy-be.onrender.com/getCity"
+
+
+  //Local
+  apiurl="http://localhost:3000/users"
+  createdata="http://localhost:3000/user"
+  auth="http://localhost:3000/auth"
+  nameByEmail="http://localhost:3000/name"
+  getProperties="http://localhost:3000/properties"
+  createProperty="http://localhost:3000/create-properties"
+  deleteProperty="http://localhost:3000/delete"
+  mail1= "http://localhost:3000/sendmail"
+  getCityUrl = "http://localhost:3000/getCity"
   
 
   
@@ -25,8 +40,11 @@ export class ApiserviceService {
   getAllUser():Observable<any>{
     return this.http.get(`${this.apiurl}`)
   }
-  getThemeColor():Observable<any>{
-    return this.http.get(`${this.bgColorUrl}`)
+  // getThemeColor():Observable<any>{
+  //   return this.http.get(`${this.bgColorUrl}`)
+  // }
+  getCities():Observable<any>{
+    return this.http.get(`${this.getCityUrl}`)
   }
   //create data
   createData(data:any):Observable<any>{

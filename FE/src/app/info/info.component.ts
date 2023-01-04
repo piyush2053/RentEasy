@@ -16,6 +16,7 @@ export class InfoComponent implements OnInit {
   mobile: any;
   imgUser: any;
   img: any;
+  price:any;
 
   constructor(private router: Router) { }
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class InfoComponent implements OnInit {
     this.mobile = window.localStorage.getItem("mobile")
     this.imgUser = window.localStorage.getItem("imgUser")
     this.img = window.localStorage.getItem("img")
+    this.price = window.localStorage.getItem("price")
   }
 
   call(){

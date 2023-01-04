@@ -14,22 +14,22 @@ app.listen(3000, () => {
     console.log('BE Running at Port 3000');
 })
 
-// //connection to Database 
-// const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     database: 'users',
-//     port: 3306
-// })
-//freeSQL databse
+//connection to Database 
 const db = mysql.createConnection({
-    host: 'sql6.freesqldatabase.com',
-    user: 'sql6586741',
-    password: 'WVbHsnwH2g',
-    database: 'sql6586741',
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'users',
     port: 3306
 })
+//freeSQL databse
+// const db = mysql.createConnection({
+//     host: 'sql6.freesqldatabase.com',
+//     user: 'sql6586741',
+//     password: 'WVbHsnwH2g',
+//     database: 'sql6586741',
+//     port: 3306
+// })
 
 //checking connection with Database
 db.connect(err => {
@@ -66,6 +66,22 @@ app.get("/bg-color", (req, res) => {
         } else {
             res.send({
                 message: "theme color fetched from DB",
+                data: results
+            });
+        }
+
+    });
+})
+//get City
+app.get("/getCity", (req, res) => {
+    console.log("Api running to fetch bg color");
+    let qrr = `SELECT DISTINCT City FROM properties;`; 
+    db.query(qrr, (err, results) => {
+        if (err) {
+            console.log("Error", err);
+        } else {
+            res.send({
+                message: "Cities Fetched",
                 data: results
             });
         }
