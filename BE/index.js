@@ -15,21 +15,21 @@ app.listen(3000, () => {
 })
 
 //connection to Database 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'users',
-    port: 3306
-})
-//freeSQL databse
 // const db = mysql.createConnection({
-//     host: 'sql6.freesqldatabase.com',
-//     user: 'sql6586741',
-//     password: 'WVbHsnwH2g',
-//     database: 'sql6586741',
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'users',
 //     port: 3306
 // })
+//freeSQL databse
+const db = mysql.createConnection({
+    host: 'sql6.freesqldatabase.com',
+    user: 'sql6586741',
+    password: 'WVbHsnwH2g',
+    database: 'sql6586741',
+    port: 3306
+})
 
 //checking connection with Database
 db.connect(err => {
