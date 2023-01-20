@@ -1,15 +1,16 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name="viewport" content=
+"width=device-width, initial-scale=1.0">
 <div id="header-div"
     style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between; ">
 
-    <div style="display: flex; border-radius: 30px;">
-
+    <div style="display: flex;justify-content: space-between; border-radius: 30px;">
         <h2 id="gg" style="margin-left: 70px;margin-top: 20px; margin-right: 14px;padding-top: 10px; color: #616161;">
             Properties
             Near You
         </h2>
         <!-- Admin view -->
-        <button type="button" class="btn btn-primary" [hidden]="!validate" (click)="navigateToManage()"
+        <button type="button" class="btn btn-primary" *ngIf="validate" (click)="navigateToManage()"
             style="margin-top: 35px;font-size: 13px;background-color:#3d6cd2; border-radius: 20px; font-weight: 500;color: rgb(255, 255, 255);height: fit-content;width: fit-content;">Manage
             Properties
         </button>
@@ -48,13 +49,12 @@
 <button class="btn btn-warning" style="margin-left: 10px; border-radius: 20px;color: white;font-weight: 500;" (click)="search()"> Search</button>
 </div> -->
 
-<div style="margin-bottom: 10px;background-image: url('https://static.vecteezy.com/system/resources/previews/007/535/400/original/blurred-and-soft-blue-gradient-background-free-vector.jpg');" >
+<div style="margin-bottom: 10px;background-image: url('https://static.vecteezy.com/system/resources/previews/007/535/400/original/blurred-and-soft-blue-gradient-background-free-vector.jpg'); width: 100%;" >
     <p style="margin-left:80px;color:white;font-weight: 500;padding: 10px;">Rent Easy is Avaiable in {{countCity}}+ Locations Now !</p>
 </div>
 
-<div id="title1"
-    style="display: grid;margin-left: 30px; margin-right: 45px;grid-template-columns: repeat(4, 1fr);gap: 1px;">
-    <ul class="cards-lists" *ngFor="let usr of readProps">
+<div id="title1" style="display: grid;margin-left: 30px; margin-right: 45px;grid-template-columns: repeat(4, 1fr);gap: 1px; width: 100%;">
+    <ul class="cards-lists" *ngFor="let usr of readProps" style="display: flex; ">
         <a (click)="toInfo(usr.title,usr.nameUser,usr.Address,usr.City,usr.mobile,usr.imgUser,usr.img,usr.price)" class="card">
             <img src="{{usr.img}}" class="card__image" alt="" />
             <div class="card__overlay">
@@ -79,13 +79,6 @@
                 <div class="call" id="call"></div>
             </div>
         </a>
-        <!-- <div
-                style="width: max-content;height: 20px;padding-left: 25px; padding-right: 25px;box-shadow: 0px -4px 8px rgba(40, 21, 216, 0.25);padding-bottom: 27px;color: white;background-color: #1976D2;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px; margin-right: auto;">
-                {{usr.propType}}  @ &#8377; {{usr.price}} only/-</div> -->
     </ul>
 </div>
-<!-- 
-Demosttraing DOM into Project in my channel so ignore this---------!
-<input  id="text12" type="text" class="form-style" placeholder="Add a task" autocomplete="off">
-<button class="btn btn-primary" (click)="addTask()" id="buttonAdd">Add Task</button> -->
 <router-outlet></router-outlet>
