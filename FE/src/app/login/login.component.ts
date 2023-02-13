@@ -33,14 +33,15 @@ export class LoginComponent implements OnInit {
       this.api.authLogin(this.loginForm.value).subscribe((res) => {
         console.log(res);
         // alert("Succesfully Login !")
-        if (res.message === 'Logged in') {
-          window.localStorage.setItem("userStatus", res.message)
+        if (res){
+          window.localStorage.setItem("userStatus", "Logged In")
           this.loading = false;
           this.router.navigateByUrl('/home');
-          
         }
-        else {
+        else  {
           alert("Wrong Credentials !")
+          this.loading = false;
+          
         }
 
       })

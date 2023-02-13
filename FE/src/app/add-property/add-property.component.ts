@@ -48,29 +48,23 @@ export class AddPropertyComponent implements OnInit {
 
   propSubmit() {
     if (this.propForm.valid) {
-      let title1 = this.propForm.value.title;
-      let address1 = this.propForm.value.address;
-      let city1 = this.propForm.value.city;
-      let img1 = this.propForm.value.img;
-      let mobile = this.propForm.value.mobile;
-      let propType = this.propForm.value.propType;
-      let price = this.propForm.value.price;
-      
       this.propForm.value["nameUser"] = this.name;
       this.propForm.value["email"] = this.email;
       this.propForm.value["imgUser"] = this.imgUrl;
       console.log(this.propForm.value)
       this.api.createProperties(this.propForm.value).subscribe((res) => {
-        alert("Succesfully Registered Property!")
-        this.propForm.reset();
-        this.router.navigateByUrl('/home');
+        if(res){
+          alert("Succesfully Registered Property!")
+          this.propForm.reset();
+          this.router.navigateByUrl('/home');
+        }
+        else{
+          alert("Failed to register")
+        }  
       })
-
     }
     else {
       this.errMsg = "All fields required."
     }
-
   }
-
 }

@@ -43,9 +43,9 @@ export class DeleteComponent implements OnInit {
   deleteUser(id:any){
     console.log(id,"-: Selected id")
     this.api.deleteProperties(id).subscribe((res)=>{
-      console.log(res,"Property Deleted")
-      window.location.reload();
+      console.log(res)
     })
+    window.location.reload();
   }
 
   

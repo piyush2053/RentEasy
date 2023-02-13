@@ -35,11 +35,11 @@ export class HomepageComponent implements OnInit {
   }
   ngOnInit(): void {
     this.bgColor = "white";
-    // this.api.getThemeColor().subscribe((res)=>{
-    //   this.bgColor = res.data[0].bgcolor;
-    //   window.localStorage.setItem("themeColor",this.bgColor)
-    //   document.body.style.backgroundColor = this.bgColor;
-    // })
+    this.api.getThemeColor().subscribe((res)=>{
+      this.bgColor = res.data;
+      window.localStorage.setItem("themeColor",this.bgColor)
+      document.body.style.backgroundColor = this.bgColor;
+    })
     this.api.getNameByEmail(this.email).subscribe((res) => {
       this.name = res.data;
       this.imgUrl = res.body;

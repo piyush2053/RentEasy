@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const cors = require('cors');
-const mysql = require('mysql2');
 const axios = require('axios');
+const { dbConnectUser, dbConnectProperties } = require('./mongodb')
+const mongoDb = require('mongodb')
 
 
 const app = express();
@@ -14,79 +15,40 @@ app.listen(3000, () => {
     console.log('BE Running at Port 3000');
 })
 
-//connection to Database 
-// const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     database: 'users',
-//     port: 3306
-// })
-//freeSQL databse
-const db = mysql.createConnection({
-    host: 'sql6.freesqldatabase.com',
-    user: 'sql6586741',
-    password: 'WVbHsnwH2g',
-    database: 'sql6586741',
-    port: 3306
-})
 
-//checking connection with Database
-db.connect(err => {
-    if (err) {
-        console.log("404 - Error Connecting to Database")
-    } else {
-        console.log("Database Connection Successful !")
-    }
-})
+
 
 //get properties data from DB
 app.get("/properties", (req, res) => {
     console.log("Api running to fetch from Database only (Query SQL)");
-    let qrr = `SELECT * FROM properties order by id desc;`;
-    db.query(qrr, (err, results) => {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            res.send({
-                message: "Records fetched from DB",
-                data: results
-            });
-        }
+    //mongoDB
+    const fecthProp = async () => {
+        let dataProperties = await dbConnectProperties();
+        dataProperties = await dataProperties.find().toArray();
+        res.send({data:dataProperties});
+    }
+    fecthProp();
 
-    });
 })
 //getTheme Color
 app.get("/bg-color", (req, res) => {
     console.log("Api running to fetch bg color");
-    let qrr = `SELECT bgcolor FROM user where id = 6;`;
-    db.query(qrr, (err, results) => {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            res.send({
-                message: "theme color fetched from DB",
-                data: results
-            });
-        }
-
-    });
+    //mongoDB
+    const fetchColor = async () => {
+        let dataUser = await dbConnectUser();
+        dataUser = await dataUser.find({ "id": 6 }).toArray();
+        res.send(dataUser[0].color)
+    }
+    fetchColor();
 })
 //get City
 app.get("/getCity", (req, res) => {
-    console.log("Api running to fetch bg color");
-    let qrr = `SELECT DISTINCT City FROM properties;`; 
-    db.query(qrr, (err, results) => {
-        if (err) {
-            console.log("Error", err);
-        } else {
-            res.send({
-                message: "Cities Fetched",
-                data: results
-            });
-        }
-
-    });
+    const fetchCity = async () => {
+        let dataProperties = await dbConnectProperties();
+        dataProperties = await dataProperties.distinct("City");
+        res.send({data: dataProperties});
+    }
+    fetchCity();
 })
 
 //create data in db 
@@ -152,50 +114,39 @@ app.post("/create-properties", (req, res) => {
     let message = `Hello,\n${nameUser} your property is now live wish us please be available at your mobile number ${mobile} for the same.\nAddress: ${address}\n\nCity: ${city}\nPurpose: ${propType}\n\nThank You`;
 
     sendEmail(nameUser, email, subject, message);
+    let result = req.body
+    console.log(result)
+    const creatingProp = async () => {
+        let prop = await dbConnectProperties();
+        prop = await prop.insertOne(result)
+        res.send(true);
+    }
+    creatingProp();
 
-    let qr = `insert into properties (title,address,city,img,nameUser,imgUser,mobile,propType,price,emailUser) value ("${title}","${address}","${city}","${img}","${nameUser}","${imgUser}","${mobile}","${propType}","${price}","${email}");`;
-    //Pushing the new user into Database
-    db.query(qr, (err) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        res.send({
-            message: "Created in DB"
-        });
-
-    })
 })
 //delete prperty
 app.delete("/delete/:id", (req, res) => {
-    console.log("API to delete property by id-:", req.params.id);
-    let qrid = req.params.id;
-    let qr = `DELETE FROM properties WHERE id=${qrid};`
-    let qr2 = `SELECT title,nameUser,emailUser from properties WHERE id=${qrid};`
-
-    db.query(qr2, (err, results) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        else {
-            let title = results[0].title
-            let name = results[0].nameUser
-            let email = results[0].emailUser
-            let subject = `Property Removed "${title}"`
+    console.log("Deleting property by id-:", req.params.id);
+    var qrid = req.params.id;
+    // let qr = `DELETE FROM properties WHERE id=${qrid};`
+    // let qr2 = `SELECT title,nameUser,emailUser from properties WHERE id=${qrid};`
+    const fecthProp = async () => {
+        let dataProperties = await dbConnectProperties();
+        const Email123 = async ()=>{
+            dataProperties = await dataProperties.find({_id: new mongoDb.ObjectId(qrid)}).toArray();
+            console.log(dataProperties)
+            let title = dataProperties[0].title
+            let name = dataProperties[0].nameUser
+            let email = dataProperties[0].emailUser
+            let subject = `Property Removed "${title}"` 
             let message = `Hello,\n${name} your property "${title}" was removed by Rent Easy team due to some violations done by you.\n\nThank You`;
-            sendEmail(name, email, subject, message);
+            sendEmail(name, email, subject, message);   
         }
-    })
-
-    db.query(qr, (err, results) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        else {
-            res.send({
-                message: "Property deleted from a ID",
-            })
-        }
-    })
+        Email123();
+        dataProperties.deleteOne({ "_id": new mongoDb.ObjectId(qrid)})
+        res.send("Property deleted")
+    }
+    fecthProp();
 })
 
 
@@ -204,59 +155,26 @@ app.delete("/delete/:id", (req, res) => {
 app.get("/name/:email", (req, res) => {
     let email = req.params.email;
     console.log("Api running to fetch name by email");
-    let qrr = `SELECT name,netImg FROM user WHERE email ='${email}';`;
-    db.query(qrr, (err, results) => {
-        if (results.length > 0) {
-            res.send({
-                data: results[0].name,
-                body: results[0].netImg
-            });
+    const emailUser = async () => {
+        let userData = await dbConnectUser();
+        userData = await userData.find({ "email": `${email}` }).toArray();
+        if (isEmpty(userData)) {
+            res.send(false)
         }
         else {
+            let object = {
+                "name": userData[0].name,
+                "netImg": userData[0].netImg
+            }
             res.send({
-                message: "Error No email given"
+                data: object.name,
+                body: object.netImg
             })
         }
-    });
+    }
+    emailUser()
 })
 
-
-
-//fetch user by id
-app.get("/user/:id", (req, res) => {
-    console.log("API to fetch user by id-:", req.params.id);
-    let qrid = req.params.id;
-    let qr = `SELECT * FROM user WHERE id = ${qrid}`
-    db.query(qr, (err, results) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        if (results.length > 0) {
-            res.send({
-                message: "Users data from a ID",
-                data: results
-            })
-        }
-    })
-})
-
-//delete
-app.delete("/user/:id", (req, res) => {
-    console.log("API to delete user by id-:", req.params.id);
-    let qrid = req.params.id;
-    let qr = `DELETE FROM user WHERE id=${qrid};`
-    db.query(qr, (err, results) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        else {
-            res.send({
-                message: "Users deleted from a ID",
-            })
-            client.del('getUsers')
-        }
-    })
-})
 //create user data in db 
 app.post("/user", (req, res) => {
     console.log("Post api to create user");
@@ -264,36 +182,45 @@ app.post("/user", (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
     let netImg = req.body.netImg;
-    let qr = `insert into user (name,email,password,netImg) value ("${name}","${email}","${password}","${netImg}");`;
-    //Pushing the new user into Database
-    db.query(qr, (err) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        res.send({
-            message: "Created in DB"
-        });
-
-    })
+    let result = {
+        "name": name,
+        "email": email,
+        "password": password,
+        "netImg": netImg,
+    }
+    console.log(result)
+    const creatingUser = async () => {
+        let userData = await dbConnectUser();
+        userData = await userData.insertOne(result)
+        res.send(true);
+    }
+    creatingUser();
 })
 
 //auth
 app.post('/auth', (request, res) => {
     let email = request.body.email;
     let password = request.body.password;
-    if (email && password) {
-        let qr = `SELECT email,password FROM user WHERE email = '${email}' AND password = '${password}';`;
-        db.query(qr, (err, results) => {
-            let result1 = results.length
-            if (result1 > 0) {
-                res.send({
-                    message: "Logged in",
-                });
+    const auth = async () => {
+        let userData = await dbConnectUser();
+        userData = await userData.find({ "email": `${email}` }).toArray();
+        if (isEmpty(userData)) {
+            res.send(false)
+        }
+        else {
+            let object = {
+                "email": userData[0].email,
+                "password": userData[0].password
             }
-            else {
-                res.send({ message: "Error" })
-            }
-        })
+            let responseFinal = object.email === email && object.password === password
+            res.send(responseFinal)
+        }
     }
+    auth()
+
 });
 
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+}

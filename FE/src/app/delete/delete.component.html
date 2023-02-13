@@ -33,7 +33,7 @@
           <td>{{usr.Address}}</td>
           <td>{{usr.City}}</td>
           <td><div style="display: flex;"><p style="font-size: 10px; margin-top: 7px;">{{usr.nameUser}}</p> <img src={{usr.imgUser}} alt="No Image" style="border-radius: 50px;" width="40" height="40"></div></td>
-          <td><button class="btn btn-danger" [disabled]="!validate" (click)="deleteUser(usr.id)">Delete</button></td>
+          <td><button class="btn btn-danger" [disabled]="!validate" (click)="deleteUser(usr._id)">Delete</button></td>
         </tr>
       </tbody>
     </table>

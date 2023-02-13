@@ -12,14 +12,14 @@ import { ApiserviceService } from '../apiservice.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private api: ApiserviceService,private router:Router) {
-    
-   }
+  constructor(private api: ApiserviceService, private router: Router) {
+
+  }
   readUser: any;
   errMsg: any;
 
   ngOnInit(): void {
-    
+
   }
   userForm = new FormGroup({
     'name': new FormControl('', Validators.required),
@@ -32,10 +32,13 @@ export class SignupComponent implements OnInit {
     if (this.userForm.valid) {
       console.log(this.userForm.value);
       this.api.createData(this.userForm.value).subscribe((res) => {
-        console.log(res);
-        alert("Succesfully Registered !")
-        this.userForm.reset();
-        this.router.navigateByUrl('');
+        if (res) {
+          alert("Succesfully Registered !")
+          this.userForm.reset();
+          this.router.navigateByUrl('');
+        } else {
+          alert("Failed to register")
+        }
       })
     }
     else {
