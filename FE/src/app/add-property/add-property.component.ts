@@ -43,6 +43,7 @@ export class AddPropertyComponent implements OnInit {
     'email': new FormControl(''),
     'propType': new FormControl('',Validators.required),
     'price': new FormControl('',Validators.required),
+    'views': new FormControl('')
     
   })
 
@@ -51,6 +52,7 @@ export class AddPropertyComponent implements OnInit {
       this.propForm.value["nameUser"] = this.name;
       this.propForm.value["email"] = this.email;
       this.propForm.value["imgUser"] = this.imgUrl;
+      this.propForm.value["views"] = '0';
       console.log(this.propForm.value)
       this.api.createProperties(this.propForm.value).subscribe((res) => {
         if(res){

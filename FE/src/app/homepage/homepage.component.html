@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<meta name="viewport" content=
-"width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div id="header-div"
     style="padding-bottom: 30px; padding-top: 30px;padding-left: 10px;display: flex;justify-content: space-between; ">
 
@@ -53,7 +52,7 @@
     <p style="margin-left:80px;color:white;font-weight: 500;padding: 10px;">Rent Easy is Avaiable in {{countCity}}+ Locations Now !</p>
 </div>
 
-<div id="title1" style="display: grid;margin-left: 30px; margin-right: 45px;grid-template-columns: repeat(4, 1fr);gap: 1px; width: 100%;">
+<div id="title1" style="display: grid;margin-left: 30px; margin-right: 45px;grid-template-columns: repeat(4, 1fr);gap: 1px; width: 100;">
     <ul class="cards-lists" *ngFor="let usr of readProps" style="display: flex; ">
         <a (click)="toInfo(usr._id,usr.title,usr.nameUser,usr.Address,usr.City,usr.mobile,usr.imgUser,usr.img,usr.price,usr.views)" class="card">
             <img src="{{usr.img}}" class="card__image" alt="" />
@@ -62,7 +61,7 @@
                     <div>
                         <h3 style="font-size: 18px; color: black;">{{usr.title}}</h3>
                         <h4 style="font-size: 10px; color: black;">{{usr.nameUser}}</h4>
-                        <h4 style="font-size: 10px; color: black;">Views <i class="fa fa-eye" style="color: black;"></i> {{usr.views}}</h4>
+                        <h4 style="font-size: 10px; color: black;">Views <i class="fa fa-eye"  style="color: black;"></i> {{usr.views}}</h4>
                     </div>
                     <div [hidden]="!imageLoader" class="loader">
                         <div class="spinner">

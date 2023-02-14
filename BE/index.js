@@ -98,7 +98,7 @@ app.post("/create-properties", (req, res) => {
     let price = req.body.price;
     let email = req.body.email;
     let subject = `Property Listed: ${title}`;
-    let message = `Hello,\n${nameUser} your property is now live wish us please be available at your mobile number ${mobile} for the same.\nAddress: ${address}\n\nCity: ${city}\nPurpose: ${propType}\n\nThank You`;
+    let message = `Hello,\n${nameUser} your property is now live with us please be available at your mobile number ${mobile} for the same.\nAddress: ${address}\n\nCity: ${city}\nPurpose: ${propType}\n\nThank You`;
 
     sendEmail(nameUser, email, subject, message);
     let result = req.body
@@ -132,6 +132,7 @@ app.delete("/delete/:id", (req, res) => {
         Email123();
         dataProperties.deleteOne({ "_id": new mongoDb.ObjectId(qrid)})
         res.send("Property deleted")
+        
     }
     fecthProp();
 })
