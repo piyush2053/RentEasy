@@ -4,8 +4,6 @@ const cors = require('cors');
 const axios = require('axios');
 const { dbConnectUser, dbConnectProperties } = require('./mongodb')
 const mongoDb = require('mongodb')
-
-
 const app = express();
 
 app.use(cors());
@@ -14,9 +12,6 @@ app.use(bodyparser.json());
 app.listen(3000, () => {
     console.log('BE Running at Port 3000');
 })
-
-
-
 
 //get properties data from DB
 app.get("/properties", (req, res) => {
@@ -51,22 +46,17 @@ app.get("/getCity", (req, res) => {
     fetchCity();
 })
 
-//create data in db 
-app.post("/bg-color", (req, res) => {
-    let colorBG = req.body.colorBG;
-    let qr = `UPDATE user SET bgcolor= '${colorBG}' WHERE  id = 6;`;
-    db.query(qr, (err) => {
-        if (err) {
-            console.log("Error", err)
-        }
-        res.send({
-            message: "Pushed Color into DB"
-        });
-
-    })
+//add views
+app.post("/views", (req, res) => {
+   let views = req.body.views
+   let _id = req.body._id
+   const viewsUpdate = async ()=>{
+    let dataProperties = await dbConnectProperties();
+    dataProperties.updateOne({'_id': new mongoDb.ObjectId(_id)}, {$set: {"views" : views}})
+   }
+   viewsUpdate();
+   
 })
-
-//post properties in DB
 
 //Email part
 async function sendEmail(name, email, subject, message) {
@@ -86,7 +76,6 @@ async function sendEmail(name, email, subject, message) {
         headers: { 'Content-Type': 'application/json' },
         auth: { username: '7c6d0f681bf935af8961905ae46b1ae6', password: 'f23dacbfc3cff9aada4dd69a4d1e4bcf' },
     };
-
     return axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
@@ -94,9 +83,7 @@ async function sendEmail(name, email, subject, message) {
         .catch(function (error) {
             console.log(error);
         });
-
 }
-
 //create data in db 
 app.post("/create-properties", (req, res) => {
     console.log("Post api to add property");

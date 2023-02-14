@@ -75,7 +75,8 @@ export class HomepageComponent implements OnInit {
     this.router.navigateByUrl('/add-property')
   }
 
-  toInfo(title: any, nameUser: any, address: any, city: any, mobile: any, imgUser: any, img: any, price: any) {
+  toInfo(_id:any,title: any, nameUser: any, address: any, city: any, mobile: any, imgUser: any, img: any, price: any,views:any) {
+    window.localStorage.setItem("Object Id mongo", `${_id}`)
     window.localStorage.setItem("title", `${title}`)
     window.localStorage.setItem("nameUser", `${nameUser}`)
     window.localStorage.setItem("address", `${address}`)
@@ -84,6 +85,16 @@ export class HomepageComponent implements OnInit {
     window.localStorage.setItem("imgUser", `${imgUser}`)
     window.localStorage.setItem("img", `${img}`)
     window.localStorage.setItem("price", `${price}`)
+    //adding views
+    views = Number(views) + 1;
+    let object1 = {
+      "views": views,
+      "_id": _id
+    }
+    this.api.viewsAdd(object1).subscribe((res: any) => {
+      console.log(object1)
+    })
+    window.localStorage.setItem("views", `${views}`)
     this.router.navigateByUrl('/info')
   }
 
