@@ -120,8 +120,12 @@ app.delete("/delete/:id", (req, res) => {
     const fecthProp = async () => {
         let dataProperties = await dbConnectProperties();
         const Email123 = async ()=>{
-            dataProperties = await dataProperties.find({_id: new mongoDb.ObjectId(qrid)}).toArray();
-            console.log(dataProperties)
+            try {
+                dataProperties = await dataProperties.find({_id: new mongoDb.ObjectId(qrid)}).toArray();
+                console.log(dataProperties)    
+            } catch (error) {
+                res.send({message: "error",data:error})
+            }
             let title = dataProperties[0].title
             let name = dataProperties[0].nameUser
             let email = dataProperties[0].emailUser

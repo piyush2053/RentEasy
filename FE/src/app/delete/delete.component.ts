@@ -43,7 +43,11 @@ export class DeleteComponent implements OnInit {
   deleteUser(id:any){
     console.log(id,"-: Selected id")
     this.api.deleteProperties(id).subscribe((res)=>{
-      console.log(res)
+      if(res.message === 'error'){
+        alert("Sorry try again")
+      }else{
+        console.log("Succefully deleted")
+      }
     })
     window.location.reload();
   }
