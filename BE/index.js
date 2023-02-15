@@ -55,6 +55,7 @@ app.post("/views", (req, res) => {
     dataProperties.updateOne({'_id': new mongoDb.ObjectId(_id)}, {$set: {"views" : views}})
    }
    viewsUpdate();
+   res.send("Views Registered")
    
 })
 
