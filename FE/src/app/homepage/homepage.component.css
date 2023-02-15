@@ -4,6 +4,13 @@
   width: 100%;
 }
 
+@media (min-width: 600px) {
+  .ul{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .ul{ grid-template-columns: repeat(3, 1fr); }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -297,19 +304,25 @@ body {
 
 
 /* gadvfukakefu */
+li {
+  color: white;
+  text-align: center;
 
-
-
-
-
-
+}
 
 .cards-list {
   z-index: 0;
   width: 100%;
-  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;  
+
+}
+
+.xyz1{
+  --auto-grid-min-size: 19rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 5fr));
+  grid-gap: 1rem;
 }
 
 .card {
