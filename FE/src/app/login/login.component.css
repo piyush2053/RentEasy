@@ -143,8 +143,7 @@ h6 span {
   z-index: 20;
   border-radius: 20px;
   display: block;
-  background-color: white;
-  box-shadow: 0 2px 4px 0.5px rgba(1, 1, 1, 0.2);
+ 
   
 }
 
@@ -160,15 +159,15 @@ h6 span {
   padding: 13px 20px;
   padding-left: 55px;
   height: 48px;
-  width: 100%;
+  width: 250px;
   font-weight: 500;
   border-radius: 4px;
   font-size: 14px;
   line-height: 22px;
   letter-spacing: 0.5px;
   outline: none;
-  color: black;
-  background-color: #f5f1f1;
+  color: transparent;
+  background-color: #fff;
   border: none;
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
@@ -191,6 +190,7 @@ h6 span {
   line-height: 48px;
   text-align: left;
   color: #000000;
+
   -webkit-transition: all 200ms linear;
   transition: all 200ms linear;
 }
@@ -493,4 +493,89 @@ div.loading{
   -webkit-animation: uil-ring-anim 1s linear infinite;
   -o-animation: uil-ring-anim 1s linear infinite;
   animation: uil-ring-anim 1s linear infinite;
+}
+
+
+
+/* //svg */
+
+
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f4efe0;
+}
+#zoom {
+  transform-origin: center;
+  animation: vanish 4s infinite linear, zoom2 4s infinite cubic-bezier(0.65, 0, 0.35, 1); 
+}
+@keyframes zoom2 {
+  from { transform: scale(1); }
+  to { transform: scale(21.25); }
+}
+#background {
+  transform-origin: center;
+  animation: vanish 4s infinite linear, zoom1 4s infinite cubic-bezier(0.65, 0, 0.35, 1);;
+}
+#frame-face {
+  transform-origin: center;
+  animation: zoom1 4s infinite cubic-bezier(0.65, 0, 0.35, 1); 
+}
+#frame-face-small, #_face-clip {
+  transform-origin: center;
+  animation: zoom2 4s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+@keyframes zoom1 {
+  from { transform: scale(1); }
+  to { transform: scale(30); }
+}
+#window {
+  animation: vanish 4s infinite linear, slide 4s infinite linear;
+}
+@keyframes slide {
+  0%, 20% { transform: translateY(0%); }
+  50%, 100% { transform: translateY(-10%); }
+}
+@keyframes vanish {
+  0%, 40% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+#yacht-second {
+  animation: y2anim 4s infinite linear;
+}
+@keyframes y2anim {
+  0%, 50% { transform: translateX(15%); }
+  100% { transform: translateX(0); }
+}
+#sun-second {
+  animation: sun2anim 4s infinite ease-out;
+}
+@keyframes sun2anim {
+  56% { transform: translate(-10%, 5%); }
+  100% { transform: translate(0, 0); }
+}
+#beach-second {
+  animation: beach2anim 4s infinite cubic-bezier(0.33, 1, 0.68, 1);
+}
+@keyframes beach2anim {
+  0%, 45% { transform: translateY(20%);}
+  100% {transform: translateY(0);}
+}
+#house-second {
+  transform-origin: center;
+  animation: house2anim 4s infinite cubic-bezier(0.33, 1, 0.68, 1); 
+}
+@keyframes house2anim {
+  0%, 50% { transform: translateY(30%) scale(.4);}
+  100% {transform: translateY(0) scale(1);}
+}
+#tree-shadow-second {
+  transform-origin: center;
+  animation: tree2anim 4s infinite cubic-bezier(0.33, 1, 0.68, 1); 
+}
+@keyframes tree2anim {
+  0%, 55% { transform: translateY(30%) scale(.2);}
+  100% { transform: translateY(0) scale(1); }
 }
