@@ -2,7 +2,10 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
-const { dbConnectUser, dbConnectProperties } = require('./mongodb')
+const {
+    dbConnectUser,
+    dbConnectProperties
+} = require('./mongodb')
 const mongoDb = require('mongodb')
 const app = express();
 
@@ -20,7 +23,9 @@ app.get("/properties", (req, res) => {
     const fecthProp = async () => {
         let dataProperties = await dbConnectProperties();
         dataProperties = await dataProperties.find().toArray();
-        res.send({data:dataProperties});
+        res.send({
+            data: dataProperties
+        });
     }
     fecthProp();
 
@@ -31,7 +36,9 @@ app.get("/bg-color", (req, res) => {
     //mongoDB
     const fetchColor = async () => {
         let dataUser = await dbConnectUser();
-        dataUser = await dataUser.find({ "id": 6 }).toArray();
+        dataUser = await dataUser.find({
+            "id": 6
+        }).toArray();
         res.send(dataUser[0].color)
     }
     fetchColor();
@@ -41,30 +48,44 @@ app.get("/getCity", (req, res) => {
     const fetchCity = async () => {
         let dataProperties = await dbConnectProperties();
         dataProperties = await dataProperties.distinct("City");
-        res.send({data: dataProperties});
+        res.send({
+            data: dataProperties
+        });
     }
     fetchCity();
 })
 
 //add views
 app.post("/views", (req, res) => {
-   let views = req.body.views
-   let _id = req.body._id
-   const viewsUpdate = async ()=>{
-    let dataProperties = await dbConnectProperties();
-    dataProperties.updateOne({'_id': new mongoDb.ObjectId(_id)}, {$set: {"views" : views}})
-   }
-   viewsUpdate();
-   res.send("Views Registered")
-   
+    let views = req.body.views
+    let _id = req.body._id
+    const viewsUpdate = async () => {
+        let dataProperties = await dbConnectProperties();
+        dataProperties.updateOne({
+            '_id': new mongoDb.ObjectId(_id)
+        }, {
+            $set: {
+                "views": views
+            }
+        })
+    }
+    viewsUpdate();
+    res.send("Views Registered")
+
 })
 
 //Email part
 async function sendEmail(name, email, subject, message) {
     const data = JSON.stringify({
         "Messages": [{
-            "From": { "Email": "kickstartcodes@gmail.com", "Name": "Rent Easy" },
-            "To": [{ "Email": email, "Name": name }],
+            "From": {
+                "Email": "kickstartcodes@gmail.com",
+                "Name": "Tridion Sites"
+            },
+            "To": [{
+                "Email": email,
+                "Name": name
+            }],
             "Subject": subject,
             "TextPart": message
         }]
@@ -74,8 +95,13 @@ async function sendEmail(name, email, subject, message) {
         method: 'post',
         url: 'https://api.mailjet.com/v3.1/send',
         data: data,
-        headers: { 'Content-Type': 'application/json' },
-        auth: { username: '7c6d0f681bf935af8961905ae46b1ae6', password: 'f23dacbfc3cff9aada4dd69a4d1e4bcf' },
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        auth: {
+            username: '7c6d0f681bf935af8961905ae46b1ae6',
+            password: 'f23dacbfc3cff9aada4dd69a4d1e4bcf'
+        },
     };
     return axios(config)
         .then(function (response) {
@@ -112,6 +138,16 @@ app.post("/create-properties", (req, res) => {
     creatingProp();
 
 })
+
+
+app.post("/sendMailFonto", (req, res) => {
+    let email = req.body.email;
+    let name = req.body.name;
+    let message = req.body.message;
+    let subject = `Content for Approval`;
+    sendEmail(name, email, subject, message);
+    res.send(`Mail sent to ${email}`)
+})
 //delete prperty
 app.delete("/delete/:id", (req, res) => {
     console.log("Deleting property by id-:", req.params.id);
@@ -120,24 +156,31 @@ app.delete("/delete/:id", (req, res) => {
     // let qr2 = `SELECT title,nameUser,emailUser from properties WHERE id=${qrid};`
     const fecthProp = async () => {
         let dataProperties = await dbConnectProperties();
-        const Email123 = async ()=>{
+        const Email123 = async () => {
             try {
-                dataProperties = await dataProperties.find({_id: new mongoDb.ObjectId(qrid)}).toArray();
-                console.log(dataProperties)    
+                dataProperties = await dataProperties.find({
+                    _id: new mongoDb.ObjectId(qrid)
+                }).toArray();
+                console.log(dataProperties)
             } catch (error) {
-                res.send({message: "error",data:error})
+                res.send({
+                    message: "error",
+                    data: error
+                })
             }
             let title = dataProperties[0].title
             let name = dataProperties[0].nameUser
             let email = dataProperties[0].emailUser
-            let subject = `Property Removed "${title}"` 
+            let subject = `Property Removed "${title}"`
             let message = `Hello,\n${name} your property "${title}" was removed by Rent Easy team due to some violations done by you.\n\nThank You`;
-            sendEmail(name, email, subject, message);   
+            sendEmail(name, email, subject, message);
         }
         Email123();
-        dataProperties.deleteOne({ "_id": new mongoDb.ObjectId(qrid)})
+        dataProperties.deleteOne({
+            "_id": new mongoDb.ObjectId(qrid)
+        })
         res.send("Property deleted")
-        
+
     }
     fecthProp();
 })
@@ -150,11 +193,12 @@ app.get("/name/:email", (req, res) => {
     console.log("Api running to fetch name by email");
     const emailUser = async () => {
         let userData = await dbConnectUser();
-        userData = await userData.find({ "email": `${email}` }).toArray();
+        userData = await userData.find({
+            "email": `${email}`
+        }).toArray();
         if (isEmpty(userData)) {
             res.send(false)
-        }
-        else {
+        } else {
             let object = {
                 "name": userData[0].name,
                 "netImg": userData[0].netImg
@@ -196,11 +240,12 @@ app.post('/auth', (request, res) => {
     let password = request.body.password;
     const auth = async () => {
         let userData = await dbConnectUser();
-        userData = await userData.find({ "email": `${email}` }).toArray();
+        userData = await userData.find({
+            "email": `${email}`
+        }).toArray();
         if (isEmpty(userData)) {
             res.send(false)
-        }
-        else {
+        } else {
             let object = {
                 "email": userData[0].email,
                 "password": userData[0].password
