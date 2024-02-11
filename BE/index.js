@@ -144,7 +144,7 @@ app.post("/sendMailFonto", (req, res) => {
     let email = req.body.email;
     let name = req.body.name;
     let message = req.body.message;
-    let subject = `Content for Approval`;
+    let subject = req.body.subject
     sendEmail(name, email, subject, message);
     res.send(`Mail sent to ${email}`)
 })
